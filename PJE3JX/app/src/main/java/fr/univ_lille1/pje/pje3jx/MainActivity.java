@@ -11,21 +11,30 @@ import android.widget.Button;
 
 public class MainActivity extends ActionBarActivity {
 
-    BookLibrary libr;
-    private Button name=null;
-
+    Button button;
+    Button button2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        name=(Button)findViewById(R.id.name);
-        name.setOnClickListener(new MyButtonListener());
+        button = (Button) findViewById(R.id.button);
+        button2 = (Button) findViewById(R.id.button2);
 
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, AddBookActivity.class);
+                startActivity(intent);
+            }
+        });
 
-
-        libr = new BookLibrary();
+        button2.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ListBooksActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -52,21 +61,6 @@ public class MainActivity extends ActionBarActivity {
             startActivity(intent);
         }
 
-
         return super.onOptionsItemSelected(item);
-    }
-
-    class MyButtonListener implements View.OnClickListener {
-
-        @Override
-        public void onClick(View v) {
-
-            Intent intent =new Intent();
-
-            intent.setClass(MainActivity.this, ListBooksActivity.class);
-            MainActivity.this.startActivity(intent);
-
-        }
-
     }
 }

@@ -5,38 +5,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
 
-<<<<<<< HEAD
-    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="NOM"
-        android:id="@+id/name"
-        android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="58dp" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="AUTEUR"
-        android:id="@+id/author"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="GENRE"
-        android:id="@+id/genre"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="64dp" />
-
-=======
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -45,7 +13,6 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="126dp" />
->>>>>>> origin/master
 
     <Button
         android:layout_width="wrap_content"
@@ -54,4 +21,5 @@
         android:id="@+id/button2"
         android:layout_below="@+id/button"
         android:layout_centerHorizontal="true" />
+
 </RelativeLayout>
