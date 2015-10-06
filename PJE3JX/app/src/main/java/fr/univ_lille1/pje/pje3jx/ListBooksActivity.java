@@ -1,5 +1,7 @@
 package fr.univ_lille1.pje.pje3jx;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.ContextMenu;
@@ -14,6 +16,7 @@ import java.util.List;
 public class ListBooksActivity extends AppCompatActivity {
 
     ListView mListView;
+    int position;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,9 +33,30 @@ public class ListBooksActivity extends AppCompatActivity {
         mListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int pos, long id) {
-                Toast.makeText(ListBooksActivity.this, "Livre supprimé !", Toast.LENGTH_SHORT).show();
-                BookLibrary.deleteBook(pos);
-                adapter.notifyDataSetChanged();
+
+                position = pos;
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(ListBooksActivity.this);
+
+                builder.setPositiveButton(R.string.action_delete, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Toast.makeText(ListBooksActivity.this, R.string.text_bookdeleted, Toast.LENGTH_SHORT).show();
+                        BookLibrary.deleteBook(position);
+                        adapter.notifyDataSetChanged();
+                    }
+                });
+                builder.setNegativeButton(R.string.text_cancel, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {}
+                });
+
+                builder.setMessage(R.string.text_deletemessage)
+                        .setTitle(R.string.action_delete);
+
+                AlertDialog dialog = builder.create();
+
+                dialog.show();
+
+
                 return true;
             }
         });

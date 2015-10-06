@@ -8,11 +8,17 @@
 
     <string name="action_add">Ajouter</string>
     <string name="action_list">Liste des livres</string>
+    <string name="action_delete">Supprimer</string>
 
     <string name="book_title">Titre</string>
     <string name="book_author">Auteur</string>
     <string name="book_image">Image</string>
     <string name="book_genre">Genre</string>
+
+    <string name="text_cancel">Annuler</string>
+    <string name="text_no">Non</string>
+    <string name="text_bookdeleted">Livre supprimé !</string>
+    <string name="text_deletemessage">Voulez-vous supprimer ce livre ?</string>
 
 
 </resources>
