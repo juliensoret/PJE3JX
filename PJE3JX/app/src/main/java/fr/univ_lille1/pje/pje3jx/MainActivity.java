@@ -13,6 +13,8 @@ public class MainActivity extends ActionBarActivity {
 
     Button button;
     Button button2;
+    Button button3;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +23,8 @@ public class MainActivity extends ActionBarActivity {
 
         button = (Button) findViewById(R.id.button);
         button2 = (Button) findViewById(R.id.button2);
+        button3 = (Button) findViewById(R.id.button3);
+
 
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -32,6 +36,12 @@ public class MainActivity extends ActionBarActivity {
         button2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, ListBooksActivity.class);
+                startActivity(intent);
+            }
+        });
+        button3.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, GenreActivity.class);
                 startActivity(intent);
             }
         });

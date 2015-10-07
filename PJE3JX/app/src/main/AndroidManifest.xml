@@ -26,6 +26,19 @@
             android:label="@string/title_activity_list_books"
             android:parentActivityName=".MainActivity" >
         </activity>
+        <activity
+            android:name=".GenreActivity"
+            android:label="@string/title_activity_genre"
+            android:parentActivityName=".MainActivity" >
+
+        </activity>
+        <activity
+            android:name=".BooksCatalogActivity"
+            android:label="@string/title_activity_list_books"
+            android:parentActivityName=".GenreActivity" >
+
+        </activity>
+
     </application>
 
 </manifest>

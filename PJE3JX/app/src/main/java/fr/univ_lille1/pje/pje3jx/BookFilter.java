@@ -5,27 +5,33 @@ package fr.univ_lille1.pje.pje3jx;
  */
 public class BookFilter {
     protected String standard;
+    protected String detail;
 
-    public BookFilter(String standard){
+
+    public BookFilter(String standard, String detail){
+
         this.standard = standard;
+        this.detail = detail;
     }
     public boolean isSelected( Book b){
+
         switch(standard) {
             case "name":
-                if (b.getName() == standard)
+                if (b.getName().equals(detail))
                     return true;
                 else
                     break;
 
             case "author":
-                if (b.getAuthor() == standard)
+                if (b.getAuthor().equals(detail))
                     return true;
                 else
                     break;
 
-            case "genre":
-                if (b.getGenre() == standard)
+            case "Genre":
+                if (b.getGenre().equals(detail)){
                     return true;
+                }
                 else
                     break;
         }
