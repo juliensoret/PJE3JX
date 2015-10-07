@@ -3,27 +3,42 @@ package fr.univ_lille1.pje.pje3jx;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by fan on 15/10/4.
- */
 public class BookFilterCatalog extends BookFilter{
 
-    private  List<Book> list = new ArrayList<Book>();
+    private static List<String> filterLists = new ArrayList<>();
 
-    public BookFilterCatalog(String standard,String detail) {
+    public BookFilterCatalog(String standard, String detail) {
         super(standard,detail);
     }
 
-    public  List<Book> getBooks() {
-        BookLibrary library = new BookLibrary();
-        List<Book> list_books = library.getBooks();
-        for(Book b:list_books)
-        {
-            if (isSelected(b)) {
+    public static List<String> getFilterLists() {
+        if(filterLists.isEmpty())
+            fillWithExamples();
+        return filterLists;
+    }
+
+    public List<Book> getFilteredList() {
+        List<Book> list = new ArrayList<>();
+        for(Book b:BookLibrary.getBooks())
+            if (isSelected(b))
                 list.add(b);
-            }
-        }
         return list;
+    }
+
+    public static void addList(String genre){
+        filterLists.add(genre);
+    }
+
+    public static void deleteList(int position) {
+        if(filterLists.isEmpty())
+            fillWithExamples();
+        filterLists.remove(filterLists.get(position));
+    }
+
+    public static void fillWithExamples() {
+        filterLists.add("Technologie");
+        filterLists.add("BD humour");
+        filterLists.add("Roman");
     }
 
 }

@@ -45,17 +45,12 @@ public class ListBooksActivity extends AppCompatActivity {
                         adapter.notifyDataSetChanged();
                     }
                 });
-                builder.setNegativeButton(R.string.text_cancel, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {}
-                });
+                builder.setNegativeButton(R.string.text_cancel, null);
 
                 builder.setMessage(R.string.text_deletemessage)
                         .setTitle(R.string.action_delete);
 
-                AlertDialog dialog = builder.create();
-
-                dialog.show();
-
+                builder.create().show();
 
                 return true;
             }

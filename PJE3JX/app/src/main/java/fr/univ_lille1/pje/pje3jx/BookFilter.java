@@ -1,19 +1,16 @@
 package fr.univ_lille1.pje.pje3jx;
 
-/**
- * Created by fan on 15/10/4.
- */
 public class BookFilter {
     protected String standard;
     protected String detail;
 
-
     public BookFilter(String standard, String detail){
-
         this.standard = standard;
         this.detail = detail;
     }
+
     public boolean isSelected( Book b){
+
 
         switch(standard) {
             case "name":
@@ -29,7 +26,7 @@ public class BookFilter {
                     break;
 
             case "Genre":
-                if (b.getGenre().equals(detail)){
+                if (cleanString(b.getGenre()).equals(cleanString(detail))){
                     return true;
                 }
                 else
@@ -37,5 +34,9 @@ public class BookFilter {
         }
 
         return false;
+    }
+
+    public String cleanString(String s) {
+        return s.toLowerCase().replaceAll(" ","");
     }
 }

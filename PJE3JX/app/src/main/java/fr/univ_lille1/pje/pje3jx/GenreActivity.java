@@ -1,21 +1,29 @@
 package fr.univ_lille1.pje.pje3jx;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by fan on 15/10/6.
- */
 public class GenreActivity extends AppCompatActivity {
+
     ListView listgenre;
+    int position;
+    Button addButton;
+    EditText editText;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -23,62 +31,67 @@ public class GenreActivity extends AppCompatActivity {
         setContentView(R.layout.activity_genre);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
         listgenre = (ListView) findViewById(R.id.genrelistView);
 
-        listgenre.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1,getData()));
+        final ArrayAdapter adapter = new ArrayAdapter<>(
+                this,
+                android.R.layout.simple_expandable_list_item_1,
+                BookFilterCatalog.getFilterLists()
+        );
+        listgenre.setAdapter(adapter);
 
         listgenre.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, final View view,
                                     int position, long id) {
-                switch (getData().get(position)) {
-                    case "Cuisine" :
-                        Intent intent = new Intent();
-                        intent.setClass(GenreActivity.this, BooksCatalogActivity.class);
-                        intent.putExtra("standard", "Genre");
-                        intent.putExtra("detail","Cuisine");
-                        startActivity(intent);
-                        break;
-                    case "Technologie" :
-                        Intent intent1 = new Intent();
-                        intent1.setClass(GenreActivity.this, BooksCatalogActivity.class);
-                        intent1.putExtra("standard", "Genre");
-                        intent1.putExtra("detail", "Technologie");
-                        startActivity(intent1);
-                        break;
-                    case "Roman" :
-                        Intent intent2 = new Intent();
-                        intent2.setClass(GenreActivity.this, BooksCatalogActivity.class);
-                        intent2.putExtra("standard", "Genre");
-                        intent2.putExtra("detail", "Roman");
-                        startActivity(intent2);
-                        break;
-                    case "..." :
-                        Intent intent3 = new Intent();
-                        intent3.setClass(GenreActivity.this, BooksCatalogActivity.class);
-                        intent3.putExtra("standard","Genre");
-                        intent3.putExtra("detail", "...");
-                        startActivity(intent3);
-                        break;
-                }
-
+                Intent intent = new Intent();
+                intent.setClass(GenreActivity.this, BooksCatalogActivity.class);
+                intent.putExtra("standard", "Genre");
+                intent.putExtra("detail", BookFilterCatalog.getFilterLists().get(position));
+                startActivity(intent);
             }
 
         });
 
+        listgenre.setLongClickable(true);
+        listgenre.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int pos, long id) {
 
-    }
+                position = pos;
 
-    protected List<String> getData(){
+                AlertDialog.Builder builder = new AlertDialog.Builder(GenreActivity.this);
 
-        List<String> data = new ArrayList<String>();
-        data.add("Cuisine");
-        data.add("Technologie");
-        data.add("Roman");
-        data.add("...");
+                builder.setPositiveButton(R.string.action_delete, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Toast.makeText(GenreActivity.this, R.string.text_listdeleted, Toast.LENGTH_SHORT).show();
+                        BookFilterCatalog.deleteList(position);
+                        adapter.notifyDataSetChanged();
+                    }
+                });
+                builder.setNegativeButton(R.string.text_cancel, null);
 
-        return data;
+                builder.setMessage(R.string.text_deletemessage)
+                        .setTitle(R.string.action_delete);
+
+                builder.create().show();
+
+                return true;
+            }
+        });
+
+        addButton = (Button) findViewById(R.id.buttonAdd);
+        editText = (EditText) findViewById(R.id.editText);
+
+        addButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                BookFilterCatalog.addList(editText.getText().toString());
+                Toast.makeText(GenreActivity.this, "Liste ajoutée !", Toast.LENGTH_SHORT).show();
+                editText.setText("");
+                adapter.notifyDataSetChanged();
+            }
+        });
+
     }
 }

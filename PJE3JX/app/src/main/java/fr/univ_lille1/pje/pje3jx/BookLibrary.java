@@ -7,7 +7,7 @@ import java.util.List;
 
 public class BookLibrary {
 
-    private static List<Book> list = new ArrayList<Book>();
+    private static List<Book> list = new ArrayList<>();
 
     public static List<Book> getBooks() {
         if(list.isEmpty())

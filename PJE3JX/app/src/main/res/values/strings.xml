@@ -5,10 +5,11 @@
 
     <string name="title_activity_add_book">Ajouter un livre</string>
     <string name="title_activity_list_books">Liste des livres</string>
-    <string name="title_activity_genre">Liste des genres</string>
+    <string name="title_activity_genre">Filtrer par genre</string>
 
     <string name="action_add">Ajouter</string>
     <string name="action_list">Liste des livres</string>
+    <string name="action_filter">Filtres</string>
     <string name="action_delete">Supprimer</string>
 
     <string name="book_title">Titre</string>
@@ -19,7 +20,8 @@
     <string name="text_cancel">Annuler</string>
     <string name="text_no">Non</string>
     <string name="text_bookdeleted">Livre supprimé !</string>
-    <string name="text_deletemessage">Voulez-vous supprimer ce livre ?</string>
+    <string name="text_listdeleted">Liste supprimée !</string>
+    <string name="text_deletemessage">Voulez-vous supprimer cet élément ?</string>
 
 
 </resources>

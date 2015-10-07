@@ -8,9 +8,6 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-/**
- * Created by fan on 15/10/6.
- */
 public class BooksCatalogActivity extends AppCompatActivity{
     ListView mListView;
 
@@ -23,24 +20,14 @@ public class BooksCatalogActivity extends AppCompatActivity{
         String standard = intent.getStringExtra("standard");
         String detail = intent.getStringExtra("detail");
 
-
         mListView = (ListView) findViewById(R.id.listView);
 
         BookFilterCatalog bookFilterCatalog = new BookFilterCatalog(standard,detail);
 
-        final BookAdapter adapter = new BookAdapter(BooksCatalogActivity.this, bookFilterCatalog.getBooks());
+        final BookAdapter adapter = new BookAdapter(
+                BooksCatalogActivity.this, bookFilterCatalog.getFilteredList()
+        );
         mListView.setAdapter(adapter);
-
-       /* mListView.setLongClickable(true);
-        mListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int pos, long id) {
-                Toast.makeText(BooksCatalogActivity.this, "Livre supprimé !", Toast.LENGTH_SHORT).show();
-                BookLibrary.deleteBook(pos);
-                adapter.notifyDataSetChanged();
-                return true;
-            }
-        });*/
 
     }
 }

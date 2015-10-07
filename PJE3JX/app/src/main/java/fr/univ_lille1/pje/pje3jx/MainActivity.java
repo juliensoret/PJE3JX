@@ -8,13 +8,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-
 public class MainActivity extends ActionBarActivity {
 
     Button button;
     Button button2;
     Button button3;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,14 +23,12 @@ public class MainActivity extends ActionBarActivity {
         button2 = (Button) findViewById(R.id.button2);
         button3 = (Button) findViewById(R.id.button3);
 
-
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, AddBookActivity.class);
                 startActivity(intent);
             }
         });
-
         button2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, ListBooksActivity.class);
@@ -49,25 +45,24 @@ public class MainActivity extends ActionBarActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
         if (id == R.id.action_add) {
             Intent intent = new Intent(this, AddBookActivity.class);
             startActivity(intent);
         }
-
         if (id == R.id.action_list) {
             Intent intent = new Intent(this, ListBooksActivity.class);
+            startActivity(intent);
+        }
+        if (id == R.id.action_filter) {
+            Intent intent = new Intent(this, GenreActivity.class);
             startActivity(intent);
         }
 
