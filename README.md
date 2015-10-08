@@ -8,7 +8,7 @@ Projet à ouvrir dans Android Studio.
 ### Itération 1
 *Créer un livre* et *afficher la liste des livres enregistrés* sont deux actions possibles à partir du menu dans l'activité principale.
 
-### Itération 2
+### Itération 2gthytjuyju
 La modification n'est pas encore implémenté : En attendant il faut supprimer un livre et le recréer.
 Pour supprimer un livre, appuyer longuement sur celui-ci dans la liste.
 
