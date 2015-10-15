@@ -19,7 +19,7 @@ public class BookFilterCatalog extends BookFilter{
 
     public List<Book> getFilteredList() {
         List<Book> list = new ArrayList<>();
-        for(Book b:BookLibrary.getBooks())
+        for(Book b:BookLibrary.getInstance())
             if (isSelected(b))
                 list.add(b);
         return list;
