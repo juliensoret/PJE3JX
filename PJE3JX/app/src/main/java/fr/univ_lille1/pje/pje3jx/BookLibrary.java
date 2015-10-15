@@ -3,31 +3,32 @@ package fr.univ_lille1.pje.pje3jx;
 import android.graphics.Color;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class BookLibrary {
+public class BookLibrary extends ArrayList<Book> {
 
-    private static List<Book> list = new ArrayList<>();
+    /* singleton */
+    private static BookLibrary list = new BookLibrary();
 
-    public static List<Book> getBooks() {
+    /* only method to get singleton */
+    public static BookLibrary getInstance() {
         if(list.isEmpty())
             fillWithExamples();
         return list;
     }
 
-    public static void addBook(Book b) {
+    public void addBook(Book b) {
         if(list.isEmpty())
             fillWithExamples();
         list.add(b);
     }
 
-    public static void deleteBook(Book b) {
+    public void deleteBook(Book b) {
         if(list.isEmpty())
             fillWithExamples();
         list.remove(b);
     }
 
-    public static void deleteBook(int position) {
+    public void deleteBook(int position) {
         if(list.isEmpty())
             fillWithExamples();
         list.remove(list.get(position));
