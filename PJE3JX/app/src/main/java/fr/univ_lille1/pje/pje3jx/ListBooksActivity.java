@@ -22,7 +22,9 @@ public class ListBooksActivity extends AppCompatActivity {
 
         mListView = (ListView) findViewById(R.id.listView);
 
-        final BookAdapter adapter = new BookAdapter(ListBooksActivity.this, BookLibrary.getInstance());
+        final BookAdapter adapter = new BookAdapter(
+                ListBooksActivity.this, BookLibrary.getInstance()
+        );
         mListView.setAdapter(adapter);
 
         mListView.setLongClickable(true);

@@ -10,15 +10,17 @@ public class Book {
     private String author;
     private int image;
     private String genre;
+    private int date;
 
-    public Book(String name, String author, int image, String genre) {
+    public Book(String name, String author, int image, String genre, int date) {
         this.name = name;
         this.author = author;
         this.image = image;
         this.genre = genre;
+        this.date = date;
     }
 
-    public Book(String name, String author, String genre) {
+    public Book(String name, String author, String genre, int date) {
         this(
                 name,
                 author,
@@ -27,7 +29,8 @@ public class Book {
                         (int) ( Math.random() * 200) + 50,
                         (int) ( Math.random() * 200) + 50
                 ),
-                genre)
+                genre,
+                date)
         ;
     }
 
@@ -61,5 +64,13 @@ public class Book {
 
     public void setGenre(String genre) {
         this.genre = genre;
+    }
+
+    public int getDate() {
+        return date;
+    }
+
+    public void setDate(int date) {
+        this.date = date;
     }
 }

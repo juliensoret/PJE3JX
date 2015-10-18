@@ -37,7 +37,7 @@ public class MainActivity extends ActionBarActivity {
         });
         button3.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, GenreActivity.class);
+                Intent intent = new Intent(MainActivity.this, FiltersListActivity.class);
                 startActivity(intent);
             }
         });
@@ -62,7 +62,7 @@ public class MainActivity extends ActionBarActivity {
             startActivity(intent);
         }
         if (id == R.id.action_filter) {
-            Intent intent = new Intent(this, GenreActivity.class);
+            Intent intent = new Intent(this, FiltersListActivity.class);
             startActivity(intent);
         }
 
