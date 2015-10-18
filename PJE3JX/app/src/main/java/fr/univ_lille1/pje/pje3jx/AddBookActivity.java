@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 public class AddBookActivity extends AppCompatActivity {
 
-    EditText edTitle, edAuthor, edGenre;
+    EditText edTitle, edAuthor, edGenre, edDate;
     Button addButton;
     TextView error;
 
@@ -24,6 +24,7 @@ public class AddBookActivity extends AppCompatActivity {
         edTitle = (EditText) findViewById(R.id.editTextTitle);
         edAuthor = (EditText) findViewById(R.id.editTextAuthor);
         edGenre = (EditText) findViewById(R.id.editTextGenre);
+        edDate = (EditText) findViewById(R.id.editTextDate);
         addButton = (Button) findViewById(R.id.buttonAdd);
         error = (TextView) findViewById(R.id.textViewError);
 
@@ -34,7 +35,8 @@ public class AddBookActivity extends AppCompatActivity {
                             new Book(
                                     edTitle.getText().toString(),
                                     edAuthor.getText().toString(),
-                                    edGenre.getText().toString()
+                                    edGenre.getText().toString(),
+                                    Integer.parseInt(edDate.getText().toString())
                             )
                     );
 
@@ -53,7 +55,8 @@ public class AddBookActivity extends AppCompatActivity {
         if(!edTitle.getText().toString().equals(""))
             if(!edAuthor.getText().toString().equals(""))
                 if(!edGenre.getText().toString().equals(""))
-                    return true;
+                    if(!edDate.getText().toString().equals(""))
+                        return true;
         return false;
     }
 

@@ -3,42 +3,66 @@ package fr.univ_lille1.pje.pje3jx;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BookFilterCatalog extends BookFilter{
+public class BookFilterCatalog extends ArrayList<BookFilter> {
 
-    private static List<String> filterLists = new ArrayList<>();
+    /* singleton */
+    private static BookFilterCatalog filterLists = new BookFilterCatalog();
 
-    public BookFilterCatalog(String standard, String detail) {
-        super(standard,detail);
+    private BookFilterCatalog(){
     }
 
-    public static List<String> getFilterLists() {
+    /* only method to get singleton instance */
+    public static BookFilterCatalog getInstance() {
         if(filterLists.isEmpty())
             fillWithExamples();
         return filterLists;
     }
 
-    public List<Book> getFilteredList() {
-        List<Book> list = new ArrayList<>();
-        for(Book b:BookLibrary.getInstance())
-            if (isSelected(b))
-                list.add(b);
-        return list;
+    /**
+     * Gives a list of all filters lists' names.
+     * @return filters lists' names
+     */
+    public List<String> getFilterListNames(){
+        ArrayList<String> namesList = new ArrayList<>();
+        for (BookFilter bf : getInstance()) {
+            namesList.add(bf.getName());
+        }
+        return namesList;
     }
 
-    public static void addList(String genre){
-        filterLists.add(genre);
+    /**
+     * Add a dynamic filters list
+     * @param b filters list
+     */
+    public void addList(BookFilter b){
+        filterLists.add(b);
     }
 
-    public static void deleteList(int position) {
-        if(filterLists.isEmpty())
-            fillWithExamples();
-        filterLists.remove(filterLists.get(position));
+    /**
+     * Delete a filters list
+     */
+    public void deleteList(int position) {
+        filterLists.remove(getInstance().get(position));
     }
 
     public static void fillWithExamples() {
-        filterLists.add("Technologie");
-        filterLists.add("BD humour");
-        filterLists.add("Roman");
+        BookFilter bf;
+
+        bf = new BookFilter("Livres de Hergé");
+        bf.addFilter("author", "hergé");
+        filterLists.add(bf);
+
+        bf = new BookFilter("Pour la Cuisine");
+        bf.addFilter("genre", "cuisine");
+        filterLists.add(bf);
+
+        bf = new BookFilter("Mes Romans");
+        bf.addFilter("genre", "roman");
+        filterLists.add(bf);
+
+        bf = new BookFilter("Après l'année 2000");
+        bf.addFilter("dateMin", "2000");
+        filterLists.add(bf);
     }
 
 }
