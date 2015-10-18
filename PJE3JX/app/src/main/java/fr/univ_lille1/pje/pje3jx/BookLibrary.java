@@ -35,29 +35,10 @@ public class BookLibrary extends ArrayList<Book> {
     }
 
     public static void fillWithExamples() {
-        list.add(
-                new Book(
-                        "Tintin en Chine",
-                        "Hergé",
-                        Color.RED,
-                        "BD humour"
-                )
-        );
-        list.add(
-                new Book(
-                        "Cuisiner la morue",
-                        "Manuel Delaveiro",
-                        Color.BLUE,
-                        "Cuisine"
-                )
-        );
-        list.add(
-                new Book(
-                        "Android pour les nuls",
-                        "Mark Truite",
-                        Color.GREEN,
-                        "Technologie"
-                )
-        );
+        list.add(new Book("Tintin en Chine", "Hergé", "BD humour", 2005));
+        list.add(new Book("L'Affaire Tintin ", "Hergé", "BD humour", 1985));
+        list.add(new Book("Les recettes de Tintin", "Hergé", "Cuisine", 2015));
+        list.add(new Book("Cuisiner la morue", "Manuel Delaveiro", "Cuisine", 1995));
+        list.add(new Book("Android pour les nuls", "Mark Truite", "Technologie", 2013));
     }
 }
