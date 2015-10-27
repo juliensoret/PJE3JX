@@ -1,0 +1,27 @@
+# --table-start--
+dataClass=fr.univ_lille1.pje.pje3jx.Book
+tableName=book
+# --table-fields-start--
+# --field-start--
+fieldName=bookId
+columnName=book_id
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=name
+# --field-end--
+# --field-start--
+fieldName=author
+# --field-end--
+# --field-start--
+fieldName=image
+# --field-end--
+# --field-start--
+fieldName=genre
+# --field-end--
+# --field-start--
+fieldName=date
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################

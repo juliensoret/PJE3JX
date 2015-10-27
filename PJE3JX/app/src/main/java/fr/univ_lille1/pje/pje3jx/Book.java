@@ -1,16 +1,20 @@
 package fr.univ_lille1.pje.pje3jx;
 
 import android.graphics.Color;
-
-import java.util.Random;
+import com.j256.ormlite.field.DatabaseField;
 
 public class Book {
+
+    @DatabaseField(generatedId = true, columnName = "book_id")
+    private int bookId;
 
     private String name;
     private String author;
     private int image;
     private String genre;
     private int date;
+
+    public Book(){}
 
     public Book(String name, String author, int image, String genre, int date) {
         this.name = name;
@@ -38,39 +42,20 @@ public class Book {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getAuthor() {
         return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
     }
 
     public int getImage() {
         return image;
     }
 
-    public void setImage(int image) {
-        this.image = image;
-    }
-
     public String getGenre() {
         return genre;
-    }
-
-    public void setGenre(String genre) {
-        this.genre = genre;
     }
 
     public int getDate() {
         return date;
     }
 
-    public void setDate(int date) {
-        this.date = date;
-    }
 }
