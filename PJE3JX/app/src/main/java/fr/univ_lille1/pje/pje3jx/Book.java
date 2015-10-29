@@ -58,4 +58,11 @@ public class Book {
         return date;
     }
 
+    public void update(String nName, String nAuthor, String nGenre, int nDate) {
+        name = nName;
+        author = nAuthor;
+        genre = nGenre;
+        date = nDate;
+    }
+
 }
