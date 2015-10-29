@@ -20,6 +20,7 @@ public class AddBookActivity extends AppCompatActivity {
     private DatabaseHelper databaseHelper = null;
     EditText edTitle, edAuthor, edGenre, edDate;
     Button addButton;
+    Book editable;
     TextView error;
 
     @Override
@@ -35,30 +36,64 @@ public class AddBookActivity extends AppCompatActivity {
         addButton = (Button) findViewById(R.id.buttonAdd);
         error = (TextView) findViewById(R.id.textViewError);
 
+        final int position = this.getIntent().getIntExtra("position", -1);
+        if (position >= 0) {
+            this.setTitle(R.string.title_activity_edit_book);
+            addButton.setText(R.string.action_edit);
+            try {
+                final Dao<Book, Integer> bookDao = getHelper().getBookDao();
+                editable = bookDao.queryForAll().get(position);
+                edTitle.setText(editable.getName());
+                edAuthor.setText(editable.getAuthor());
+                edGenre.setText(editable.getGenre());
+                edDate.setText(editable.getDate()+"");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
         addButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if(checkValues()){
                     try {
                         final Dao<Book, Integer> bookDao = getHelper().getBookDao();
 
-                        bookDao.create(new Book(
-                                edTitle.getText().toString(),
-                                edAuthor.getText().toString(),
-                                edGenre.getText().toString(),
-                                Integer.parseInt(edDate.getText().toString())
-                            )
-                        );
+                        Book newBook;
+                        if (editable != null) {
+                            newBook = editable;
+                            newBook.update(
+                                    edTitle.getText().toString(),
+                                    edAuthor.getText().toString(),
+                                    edGenre.getText().toString(),
+                                    Integer.parseInt(edDate.getText().toString())
+                            );
+                            Toast.makeText(
+                                    AddBookActivity.this, R.string.text_bookedited, Toast.LENGTH_SHORT
+                            ).show();
+                        }
+                        else {
+                            newBook = new Book(
+                                    edTitle.getText().toString(),
+                                    edAuthor.getText().toString(),
+                                    edGenre.getText().toString(),
+                                    Integer.parseInt(edDate.getText().toString())
+                                );
+                            Toast.makeText(
+                                    AddBookActivity.this, R.string.text_bookadded, Toast.LENGTH_SHORT
+                            ).show();
+                        }
+
+                        bookDao.createOrUpdate(newBook);
 
                     } catch (SQLException e) {
                         e.printStackTrace();
                     }
 
-                    Toast.makeText(AddBookActivity.this, "Livre ajouté !", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(AddBookActivity.this, ListBooksActivity.class);
                     startActivity(intent);
                 }
                 else {
-                    error.setText("Veuillez remplir tous les champs !");
+                    error.setText(R.string.error_allfieldsnotfilled);
                 }
             }
         });

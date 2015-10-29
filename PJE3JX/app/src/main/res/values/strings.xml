@@ -4,10 +4,13 @@
     <string name="hello_world">En construction…</string>
 
     <string name="title_activity_add_book">Ajouter un livre</string>
+    <string name="title_activity_edit_book">Éditer un livre</string>
     <string name="title_activity_list_books">Liste des livres</string>
     <string name="title_activity_genre">Filtres dynamiques</string>
 
     <string name="action_add">Ajouter</string>
+    <string name="action_edit">Éditer</string>
+    <string name="action_editdelete">Éditer/Supprimer</string>
     <string name="action_list">Liste des livres</string>
     <string name="action_filter">Filtres</string>
     <string name="action_delete">Supprimer</string>
@@ -21,8 +24,13 @@
     <string name="text_cancel">Annuler</string>
     <string name="text_no">Non</string>
     <string name="text_bookdeleted">Livre supprimé !</string>
+    <string name="text_bookadded">Livre ajouté !</string>
+    <string name="text_bookedited">Livre édité !</string>
     <string name="text_listdeleted">Liste supprimée !</string>
+    <string name="text_editdeletemessage">Voulez-vous éditer/supprimer cet élément ?</string>
     <string name="text_deletemessage">Voulez-vous supprimer cet élément ?</string>
+
+    <string name="error_allfieldsnotfilled">Veuillez remplir tous les champs !</string>
 
 
 </resources>

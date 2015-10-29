@@ -2,6 +2,7 @@ package fr.univ_lille1.pje.pje3jx;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -65,10 +66,19 @@ public class ListBooksActivity extends AppCompatActivity {
                             }
                         }
                     });
+
+                    builder.setNeutralButton(R.string.action_edit, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            Intent intent = new Intent(ListBooksActivity.this, AddBookActivity.class);
+                            intent.putExtra("position", position);
+                            startActivity(intent);
+                        }
+                    });
+
                     builder.setNegativeButton(R.string.text_cancel, null);
 
-                    builder.setMessage(R.string.text_deletemessage)
-                            .setTitle(R.string.action_delete);
+                    builder.setMessage(R.string.text_editdeletemessage)
+                            .setTitle(R.string.action_editdelete);
 
                     builder.create().show();
 
