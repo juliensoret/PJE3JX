@@ -8,16 +8,14 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.j256.ormlite.android.apptools.OpenHelperManager;
-import com.j256.ormlite.dao.Dao;
 
 import java.sql.SQLException;
 import java.util.List;
 
 import fr.univ_lille1.pje.pje3jx.data.DatabaseHelper;
 
-public class FilteredListBooksActivity extends AppCompatActivity{
+public class FiltersListResultsActivity extends AppCompatActivity{
     private DatabaseHelper databaseHelper = null;
-    private Dao<Book, Integer> bookDao;
     ListView mListView;
     List<Book> bookList, filteredList;
 
@@ -38,14 +36,14 @@ public class FilteredListBooksActivity extends AppCompatActivity{
 
             mListView = (ListView) findViewById(R.id.listView);
             final BookAdapter adapter = new BookAdapter(
-                    FilteredListBooksActivity.this, filteredList
+                    FiltersListResultsActivity.this, filteredList
             );
             mListView.setAdapter(adapter);
 
             mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int pos, long id) {
-                    Intent intent = new Intent(FilteredListBooksActivity.this, BookDisplayActivity.class);
+                    Intent intent = new Intent(FiltersListResultsActivity.this, BookDisplayActivity.class);
                     intent.putExtra("id", filteredList.get(pos).getId());
                     startActivity(intent);
                 }

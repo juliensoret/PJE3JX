@@ -54,10 +54,10 @@ public class BookFilter {
                 case "genre":
                     bookValueString = cleanString(b.getGenre());
                     break;
-                case "dateMin":
+                case "yearStart":
                     bookValueInt = b.getDate();
                     break;
-                case "dateMax":
+                case "yearEnd":
                     bookValueInt = b.getDate();
                     break;
             }
@@ -66,11 +66,11 @@ public class BookFilter {
                 if(!filterValue.equals(bookValueString))
                     return false;
             }
-            else if(mapKey.equals("dateMin")){
+            else if(mapKey.equals("yearStart")){
                 if(bookValueInt < Integer.parseInt(filterValue))
                     return false;
             }
-            else if(mapKey.equals("dateMax")){
+            else if(mapKey.equals("yearEnd")){
                 if(bookValueInt > Integer.parseInt(filterValue))
                     return false;
             }

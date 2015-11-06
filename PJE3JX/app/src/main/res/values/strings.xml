@@ -7,7 +7,8 @@
     <string name="title_activity_edit_book">Éditer un livre</string>
     <string name="title_activity_book_display">Fiche du livre</string>
     <string name="title_activity_list_books">Liste des livres</string>
-    <string name="title_activity_genre">Filtres dynamiques</string>
+    <string name="title_activity_filterslist">Filtres dynamiques</string>
+    <string name="title_activity_filterslist_add">Créer une liste de filtres</string>
 
     <string name="action_add">Ajouter</string>
     <string name="action_edit">Éditer</string>
@@ -22,11 +23,17 @@
     <string name="book_genre">Genre</string>
     <string name="book_date">Date</string>
 
+    <string name="filterslist_name">Nom</string>
+    <string name="filterslist_filters">Critères</string>
+    <string name="filterslist_yearstart">Publié après l\'année </string>
+    <string name="filterslist_yearend">Publié avant l\'année </string>
+
     <string name="text_cancel">Annuler</string>
     <string name="text_no">Non</string>
     <string name="text_bookdeleted">Livre supprimé !</string>
     <string name="text_bookadded">Livre ajouté !</string>
     <string name="text_bookedited">Livre édité !</string>
+    <string name="text_listadded">Liste créée !</string>
     <string name="text_listdeleted">Liste supprimée !</string>
     <string name="text_editdeletemessage">Voulez-vous éditer/supprimer cet élément ?</string>
     <string name="text_deletemessage">Voulez-vous supprimer cet élément ?</string>

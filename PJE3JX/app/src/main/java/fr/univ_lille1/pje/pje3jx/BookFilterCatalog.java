@@ -31,14 +31,6 @@ public class BookFilterCatalog extends ArrayList<BookFilter> {
     }
 
     /**
-     * Add a dynamic filters list
-     * @param b filters list
-     */
-    public void addList(BookFilter b){
-        filterLists.add(b);
-    }
-
-    /**
      * Delete a filters list
      */
     public void deleteList(int position) {
@@ -61,7 +53,7 @@ public class BookFilterCatalog extends ArrayList<BookFilter> {
         filterLists.add(bf);
 
         bf = new BookFilter("Après l'année 2000");
-        bf.addFilter("dateMin", "2000");
+        bf.addFilter("yearStart", "2000");
         filterLists.add(bf);
     }
 
