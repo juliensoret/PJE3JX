@@ -8,21 +8,31 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
 public class FiltersListActivity extends AppCompatActivity {
 
     ListView filtersListView;
+    Button addButton;
     int position;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list_filters);
+        setContentView(R.layout.activity_filterslist_list);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         filtersListView = (ListView) findViewById(R.id.filtersListView);
+        addButton = (Button) findViewById(R.id.addButton);
+
+        addButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(FiltersListActivity.this, FiltersListAddActivity.class);
+                startActivity(intent);
+            }
+        });
 
         final ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 this,
@@ -37,7 +47,7 @@ public class FiltersListActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, final View view,
                                     int position, long id) {
                 Intent intent = new Intent();
-                intent.setClass(FiltersListActivity.this, FilteredListBooksActivity.class);
+                intent.setClass(FiltersListActivity.this, FiltersListResultsActivity.class);
                 intent.putExtra("position", position);
                 startActivity(intent);
             }
@@ -71,5 +81,15 @@ public class FiltersListActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        filtersListView.setAdapter(new ArrayAdapter<>(
+                this,
+                android.R.layout.simple_expandable_list_item_1,
+                BookFilterCatalog.getInstance().getFilterListNames()
+        ));
     }
 }

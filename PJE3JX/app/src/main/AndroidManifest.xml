@@ -28,11 +28,17 @@
         </activity>
         <activity
             android:name=".FiltersListActivity"
-            android:label="@string/title_activity_genre"
+            android:label="@string/title_activity_filterslist"
             android:parentActivityName=".MainActivity" >
         </activity>
         <activity
-            android:name=".FilteredListBooksActivity"
+            android:name=".FiltersListAddActivity"
+            android:label="@string/title_activity_filterslist_add"
+            android:parentActivityName=".MainActivity" >
+
+        </activity>
+        <activity
+            android:name=".FiltersListResultsActivity"
             android:label="@string/title_activity_list_books"
             android:parentActivityName=".FiltersListActivity" >
         </activity>
