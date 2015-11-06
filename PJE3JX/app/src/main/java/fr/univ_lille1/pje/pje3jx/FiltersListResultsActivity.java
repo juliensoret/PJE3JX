@@ -5,16 +5,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
 
 import com.j256.ormlite.android.apptools.OpenHelperManager;
-import com.j256.ormlite.dao.Dao;
 
 import java.sql.SQLException;
 import java.util.List;
 
 import fr.univ_lille1.pje.pje3jx.data.DatabaseHelper;
 
-public class FilteredListBooksActivity extends AppCompatActivity{
+public class FiltersListResultsActivity extends AppCompatActivity{
     private DatabaseHelper databaseHelper = null;
-    private Dao<Book, Integer> bookDao;
     ListView mListView;
     List<Book> bookList;
 
@@ -33,7 +31,7 @@ public class FilteredListBooksActivity extends AppCompatActivity{
             bookList = getHelper().getBookDao().queryForAll();
             mListView = (ListView) findViewById(R.id.listView);
             final BookAdapter adapter = new BookAdapter(
-                    FilteredListBooksActivity.this, filter.getFilteredList(bookList)
+                    FiltersListResultsActivity.this, filter.getFilteredList(bookList)
             );
             mListView.setAdapter(adapter);
         }
