@@ -1,7 +1,10 @@
 package fr.univ_lille1.pje.pje3jx;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.j256.ormlite.android.apptools.OpenHelperManager;
@@ -16,7 +19,7 @@ public class FilteredListBooksActivity extends AppCompatActivity{
     private DatabaseHelper databaseHelper = null;
     private Dao<Book, Integer> bookDao;
     ListView mListView;
-    List<Book> bookList;
+    List<Book> bookList, filteredList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,17 +28,28 @@ public class FilteredListBooksActivity extends AppCompatActivity{
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         BookFilterCatalog bfc = BookFilterCatalog.getInstance();
-        BookFilter filter = bfc.get(this.getIntent().getIntExtra("position", 0));
+        final BookFilter filter = bfc.get(this.getIntent().getIntExtra("position", 0));
 
         setTitle("Filtre : " + filter.getName());
 
         try {
             bookList = getHelper().getBookDao().queryForAll();
+            filteredList = filter.getFilteredList(bookList);
+
             mListView = (ListView) findViewById(R.id.listView);
             final BookAdapter adapter = new BookAdapter(
-                    FilteredListBooksActivity.this, filter.getFilteredList(bookList)
+                    FilteredListBooksActivity.this, filteredList
             );
             mListView.setAdapter(adapter);
+
+            mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int pos, long id) {
+                    Intent intent = new Intent(FilteredListBooksActivity.this, BookDisplayActivity.class);
+                    intent.putExtra("id", filteredList.get(pos).getId());
+                    startActivity(intent);
+                }
+            });
         }
         catch (SQLException e) {
             e.printStackTrace();

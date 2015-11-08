@@ -5,6 +5,7 @@
 
     <string name="title_activity_add_book">Ajouter un livre</string>
     <string name="title_activity_edit_book">Éditer un livre</string>
+    <string name="title_activity_book_display">Fiche du livre</string>
     <string name="title_activity_list_books">Liste des livres</string>
     <string name="title_activity_genre">Filtres dynamiques</string>
 
