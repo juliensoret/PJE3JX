@@ -38,6 +38,10 @@ public class Book {
         ;
     }
 
+    public int getId() {
+        return bookId;
+    }
+
     public String getName() {
         return name;
     }

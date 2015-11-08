@@ -23,7 +23,7 @@ public class ListBooksActivity extends AppCompatActivity {
     private Dao<Book, Integer> bookDao;
     private List<Book> bookList;
     ListView mListView;
-    int position;
+    int bId, position;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,11 +45,22 @@ public class ListBooksActivity extends AppCompatActivity {
             );
             mListView.setAdapter(adapter);
 
+            mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int pos, long id) {
+                    bId = bookList.get(pos).getId();
+                    Intent intent = new Intent(ListBooksActivity.this, BookDisplayActivity.class);
+                    intent.putExtra("id", bId);
+                    startActivity(intent);
+                }
+            });
+
             mListView.setLongClickable(true);
             mListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
                 @Override
                 public boolean onItemLongClick(AdapterView<?> adapterView, View view, int pos, long id) {
 
+                    bId = bookList.get(pos).getId();
                     position = pos;
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(ListBooksActivity.this);
@@ -70,7 +81,7 @@ public class ListBooksActivity extends AppCompatActivity {
                     builder.setNeutralButton(R.string.action_edit, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             Intent intent = new Intent(ListBooksActivity.this, AddBookActivity.class);
-                            intent.putExtra("position", position);
+                            intent.putExtra("id", bId);
                             startActivity(intent);
                         }
                     });

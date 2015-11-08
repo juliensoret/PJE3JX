@@ -36,13 +36,13 @@ public class AddBookActivity extends AppCompatActivity {
         addButton = (Button) findViewById(R.id.buttonAdd);
         error = (TextView) findViewById(R.id.textViewError);
 
-        final int position = this.getIntent().getIntExtra("position", -1);
-        if (position >= 0) {
+        final int id = this.getIntent().getIntExtra("id", -1);
+        if (id >= 0) {
             this.setTitle(R.string.title_activity_edit_book);
             addButton.setText(R.string.action_edit);
             try {
                 final Dao<Book, Integer> bookDao = getHelper().getBookDao();
-                editable = bookDao.queryForAll().get(position);
+                editable = bookDao.queryForId(id);
                 edTitle.setText(editable.getName());
                 edAuthor.setText(editable.getAuthor());
                 edGenre.setText(editable.getGenre());

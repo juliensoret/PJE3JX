@@ -30,15 +30,17 @@
             android:name=".FiltersListActivity"
             android:label="@string/title_activity_genre"
             android:parentActivityName=".MainActivity" >
-
         </activity>
         <activity
             android:name=".FilteredListBooksActivity"
             android:label="@string/title_activity_list_books"
             android:parentActivityName=".FiltersListActivity" >
-
         </activity>
-
+        <activity
+            android:name=".BookDisplayActivity"
+            android:label="@string/title_activity_book_display"
+            android:parentActivityName=".ListBooksActivity" >
+        </activity>
     </application>
 
 </manifest>
