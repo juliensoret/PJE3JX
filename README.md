@@ -1,6 +1,8 @@
 # PJE3JX
 Par Xiaofan XU et Julien SORET
 
+![logo](https://cloud.githubusercontent.com/assets/9967599/11018132/ee4a0302-85b9-11e5-8719-b222ac800e00.png)
+
 ## ¤ Installation
 Projet à ouvrir dans Android Studio.
 
