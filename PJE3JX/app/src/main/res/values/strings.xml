@@ -9,8 +9,13 @@
     <string name="title_activity_list_books">Liste des livres</string>
     <string name="title_activity_filterslist">Filtres dynamiques</string>
     <string name="title_activity_filterslist_add">Créer une liste de filtres</string>
+    <string name="title_activity_book_scan">Scanner code-barres</string>
 
     <string name="action_add">Ajouter</string>
+    <string-array name="add_array">
+        <item>Remplir le formulaire</item>
+        <item>Scanner code-barres</item>
+    </string-array>
     <string name="action_edit">Éditer</string>
     <string name="action_editdelete">Éditer/Supprimer</string>
     <string name="action_list">Liste des livres</string>
@@ -39,6 +44,8 @@
     <string name="text_deletemessage">Voulez-vous supprimer cet élément ?</string>
 
     <string name="error_allfieldsnotfilled">Veuillez remplir tous les champs !</string>
+    <string name="error_noscandatareceived">Pas de résultat !</string>
+    <string name="error_datanotfound">Pas de résultat trouvé !</string>
 
 
 </resources>

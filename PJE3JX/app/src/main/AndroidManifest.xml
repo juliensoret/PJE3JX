@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="fr.univ_lille1.pje.pje3jx" >
 
+    <uses-permission android:name="android.permission.INTERNET" >
+    </uses-permission>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -35,7 +38,6 @@
             android:name=".FiltersListAddActivity"
             android:label="@string/title_activity_filterslist_add"
             android:parentActivityName=".MainActivity" >
-
         </activity>
         <activity
             android:name=".FiltersListResultsActivity"
@@ -46,6 +48,11 @@
             android:name=".BookDisplayActivity"
             android:label="@string/title_activity_book_display"
             android:parentActivityName=".ListBooksActivity" >
+        </activity>
+        <activity
+            android:name=".BookScanActivity"
+            android:label="@string/title_activity_book_scan"
+            android:parentActivityName=".MainActivity" >
         </activity>
     </application>
 
