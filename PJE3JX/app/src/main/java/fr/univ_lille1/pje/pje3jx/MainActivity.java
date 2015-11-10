@@ -1,5 +1,7 @@
 package fr.univ_lille1.pje.pje3jx;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -25,8 +27,20 @@ public class MainActivity extends ActionBarActivity {
 
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, AddBookActivity.class);
-                startActivity(intent);
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setItems(R.array.add_array, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        if (which == 0) {
+                            Intent intent = new Intent(MainActivity.this, AddBookActivity.class);
+                            startActivity(intent);
+                        }
+                        else {
+                            Intent intent = new Intent(MainActivity.this, BookScanActivity.class);
+                            startActivity(intent);
+                        }
+                    }
+                });
+                builder.setTitle(R.string.title_activity_add_book).create().show();
             }
         });
         button2.setOnClickListener(new View.OnClickListener() {
