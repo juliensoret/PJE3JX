@@ -42,7 +42,7 @@ public class BookAddActivity extends AppCompatActivity {
             try {
                 final Dao<Book, Integer> bookDao = getHelper().getBookDao();
                 editable = bookDao.queryForId(id);
-                edTitle.setText(editable.getName());
+                edTitle.setText(editable.getTitle());
                 edAuthor.setText(editable.getAuthor());
                 edGenre.setText(editable.getGenre());
                 edDate.setText(editable.getDate()+"");

@@ -25,7 +25,7 @@ public class BookFilterCatalog extends ArrayList<BookFilter> {
     public List<String> getFilterListNames(){
         ArrayList<String> namesList = new ArrayList<>();
         for (BookFilter bf : getInstance()) {
-            namesList.add(bf.getName());
+            namesList.add(bf.getListName());
         }
         return namesList;
     }

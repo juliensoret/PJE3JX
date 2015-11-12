@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -34,6 +35,7 @@ public class BookListActivity extends AppCompatActivity {
         try {
             bookDao =  getHelper().getBookDao();
             bookList = bookDao.queryForAll();
+            Log.d("d booklist", bookList.size()+"");
             if(bookList.isEmpty()) {
                 fillBookListWithExamples();
             }

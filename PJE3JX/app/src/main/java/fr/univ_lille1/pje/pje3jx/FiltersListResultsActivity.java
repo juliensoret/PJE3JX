@@ -28,7 +28,7 @@ public class FiltersListResultsActivity extends AppCompatActivity{
         BookFilterCatalog bfc = BookFilterCatalog.getInstance();
         final BookFilter filter = bfc.get(this.getIntent().getIntExtra("position", 0));
 
-        setTitle("Filtre : " + filter.getName());
+        setTitle("Filtre : " + filter.getListName());
 
         try {
             bookList = getHelper().getBookDao().queryForAll();
