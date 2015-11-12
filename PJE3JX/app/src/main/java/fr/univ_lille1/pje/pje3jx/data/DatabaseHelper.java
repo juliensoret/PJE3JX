@@ -25,8 +25,8 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
      * Suggested Copy/Paste code. Everything from here to the done block.
      ************************************************/
 
-    private static final String DATABASE_NAME = "studentdir.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final String DATABASE_NAME = "pje3jx.db";
+    private static final int DATABASE_VERSION = 2;
 
     private Dao<Book, Integer> bookDao;
 

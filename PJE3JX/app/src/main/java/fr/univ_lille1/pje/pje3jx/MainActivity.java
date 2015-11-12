@@ -31,7 +31,7 @@ public class MainActivity extends ActionBarActivity {
                 builder.setItems(R.array.add_array, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         if (which == 0) {
-                            Intent intent = new Intent(MainActivity.this, AddBookActivity.class);
+                            Intent intent = new Intent(MainActivity.this, BookAddActivity.class);
                             startActivity(intent);
                         }
                         else {
@@ -45,7 +45,7 @@ public class MainActivity extends ActionBarActivity {
         });
         button2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ListBooksActivity.class);
+                Intent intent = new Intent(MainActivity.this, BookListActivity.class);
                 startActivity(intent);
             }
         });
@@ -68,11 +68,11 @@ public class MainActivity extends ActionBarActivity {
         int id = item.getItemId();
 
         if (id == R.id.action_add) {
-            Intent intent = new Intent(this, AddBookActivity.class);
+            Intent intent = new Intent(this, BookAddActivity.class);
             startActivity(intent);
         }
         if (id == R.id.action_list) {
-            Intent intent = new Intent(this, ListBooksActivity.class);
+            Intent intent = new Intent(this, BookListActivity.class);
             startActivity(intent);
         }
         if (id == R.id.action_filter) {

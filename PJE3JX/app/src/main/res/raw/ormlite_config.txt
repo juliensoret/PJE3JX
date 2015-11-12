@@ -8,7 +8,7 @@ columnName=book_id
 generatedId=true
 # --field-end--
 # --field-start--
-fieldName=name
+fieldName=title
 # --field-end--
 # --field-start--
 fieldName=author

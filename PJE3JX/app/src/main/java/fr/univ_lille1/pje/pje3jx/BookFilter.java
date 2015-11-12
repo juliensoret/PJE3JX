@@ -45,8 +45,8 @@ public class BookFilter {
             int bookValueInt = 0;
 
             switch(mapKey) {
-                case "name":
-                    bookValueString = cleanString(b.getName());
+                case "title":
+                    bookValueString = cleanString(b.getTitle());
                     break;
                 case "author":
                     bookValueString = cleanString(b.getAuthor());
@@ -62,7 +62,7 @@ public class BookFilter {
                     break;
             }
 
-            if(mapKey.equals("name") || mapKey.equals("author") || mapKey.equals("genre")) {
+            if(mapKey.equals("title") || mapKey.equals("author") || mapKey.equals("genre")) {
                 if(!filterValue.equals(bookValueString))
                     return false;
             }
@@ -91,7 +91,7 @@ public class BookFilter {
         return results;
     }
 
-    public String getName(){
+    public String getListName(){
         return name;
     }
 

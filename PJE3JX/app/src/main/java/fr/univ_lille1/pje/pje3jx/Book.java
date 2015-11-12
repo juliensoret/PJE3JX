@@ -8,7 +8,7 @@ public class Book {
     @DatabaseField(generatedId = true, columnName = "book_id")
     private int bookId;
 
-    private String name;
+    private String title;
     private String author;
     private int image;
     private String genre;
@@ -16,17 +16,17 @@ public class Book {
 
     public Book(){}
 
-    public Book(String name, String author, int image, String genre, int date) {
-        this.name = name;
+    public Book(String title, String author, int image, String genre, int date) {
+        this.title = title;
         this.author = author;
         this.image = image;
         this.genre = genre;
         this.date = date;
     }
 
-    public Book(String name, String author, String genre, int date) {
+    public Book(String title, String author, String genre, int date) {
         this(
-                name,
+                title,
                 author,
                 Color.rgb(
                         (int) ( Math.random() * 200) + 50,
@@ -42,8 +42,8 @@ public class Book {
         return bookId;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
     public String getAuthor() {
@@ -62,8 +62,8 @@ public class Book {
         return date;
     }
 
-    public void update(String nName, String nAuthor, String nGenre, int nDate) {
-        name = nName;
+    public void update(String nTitle, String nAuthor, String nGenre, int nDate) {
+        title = nTitle;
         author = nAuthor;
         genre = nGenre;
         date = nDate;

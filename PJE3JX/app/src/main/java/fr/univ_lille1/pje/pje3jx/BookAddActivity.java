@@ -1,6 +1,5 @@
 package fr.univ_lille1.pje.pje3jx;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -15,7 +14,7 @@ import com.j256.ormlite.dao.Dao;
 
 import java.sql.SQLException;
 
-public class AddBookActivity extends AppCompatActivity {
+public class BookAddActivity extends AppCompatActivity {
 
     private DatabaseHelper databaseHelper = null;
     EditText edTitle, edAuthor, edGenre, edDate;
@@ -26,7 +25,7 @@ public class AddBookActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_book);
+        setContentView(R.layout.activity_book_add);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         edTitle = (EditText) findViewById(R.id.editTextTitle);
@@ -43,7 +42,7 @@ public class AddBookActivity extends AppCompatActivity {
             try {
                 final Dao<Book, Integer> bookDao = getHelper().getBookDao();
                 editable = bookDao.queryForId(id);
-                edTitle.setText(editable.getName());
+                edTitle.setText(editable.getTitle());
                 edAuthor.setText(editable.getAuthor());
                 edGenre.setText(editable.getGenre());
                 edDate.setText(editable.getDate()+"");
@@ -68,7 +67,7 @@ public class AddBookActivity extends AppCompatActivity {
                                     Integer.parseInt(edDate.getText().toString())
                             );
                             Toast.makeText(
-                                    AddBookActivity.this, R.string.text_bookedited, Toast.LENGTH_SHORT
+                                    BookAddActivity.this, R.string.text_bookedited, Toast.LENGTH_SHORT
                             ).show();
                         }
                         else {
@@ -79,7 +78,7 @@ public class AddBookActivity extends AppCompatActivity {
                                     Integer.parseInt(edDate.getText().toString())
                                 );
                             Toast.makeText(
-                                    AddBookActivity.this, R.string.text_bookadded, Toast.LENGTH_SHORT
+                                    BookAddActivity.this, R.string.text_bookadded, Toast.LENGTH_SHORT
                             ).show();
                         }
 

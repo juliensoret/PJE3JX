@@ -29,7 +29,7 @@ public class BookDisplayActivity extends AppCompatActivity {
             try {
                 final Dao<Book, Integer> bookDao = getHelper().getBookDao();
                 Book b = bookDao.queryForId(id);
-                textViewTitle.setText(b.getName());
+                textViewTitle.setText(b.getTitle());
                 textViewAuthor.setText(b.getAuthor());
                 textViewGenre.setText(b.getGenre());
                 textViewDate.setText(b.getDate()+"");

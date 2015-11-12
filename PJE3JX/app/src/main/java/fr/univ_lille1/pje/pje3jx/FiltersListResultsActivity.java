@@ -22,13 +22,13 @@ public class FiltersListResultsActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list_books);
+        setContentView(R.layout.activity_book_list);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         BookFilterCatalog bfc = BookFilterCatalog.getInstance();
         final BookFilter filter = bfc.get(this.getIntent().getIntExtra("position", 0));
 
-        setTitle("Filtre : " + filter.getName());
+        setTitle("Filtre : " + filter.getListName());
 
         try {
             bookList = getHelper().getBookDao().queryForAll();
