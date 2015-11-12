@@ -43,7 +43,7 @@ public class FiltersListResultsActivity extends AppCompatActivity{
             mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int pos, long id) {
-                    Intent intent = new Intent(FilteredListBooksActivity.this, BookDisplayActivity.class);
+                    Intent intent = new Intent(FiltersListResultsActivity.this, BookDisplayActivity.class);
                     intent.putExtra("id", filteredList.get(pos).getId());
                     startActivity(intent);
                 }

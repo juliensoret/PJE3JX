@@ -89,8 +89,7 @@ public class AddBookActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
 
-                    Intent intent = new Intent(AddBookActivity.this, ListBooksActivity.class);
-                    startActivity(intent);
+                    finish();
                 }
                 else {
                     error.setText(R.string.error_allfieldsnotfilled);
