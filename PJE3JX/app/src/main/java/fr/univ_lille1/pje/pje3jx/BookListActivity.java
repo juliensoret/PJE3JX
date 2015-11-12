@@ -17,7 +17,7 @@ import com.j256.ormlite.dao.Dao;
 import java.sql.SQLException;
 import java.util.List;
 
-public class ListBooksActivity extends AppCompatActivity {
+public class BookListActivity extends AppCompatActivity {
 
     private DatabaseHelper databaseHelper = null;
     private Dao<Book, Integer> bookDao;
@@ -28,7 +28,7 @@ public class ListBooksActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list_books);
+        setContentView(R.layout.activity_book_list);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         try {
@@ -41,7 +41,7 @@ public class ListBooksActivity extends AppCompatActivity {
             mListView = (ListView) findViewById(R.id.listView);
 
             final BookAdapter adapter = new BookAdapter(
-                    ListBooksActivity.this, bookList
+                    BookListActivity.this, bookList
             );
             mListView.setAdapter(adapter);
 
@@ -49,7 +49,7 @@ public class ListBooksActivity extends AppCompatActivity {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int pos, long id) {
                     bId = bookList.get(pos).getId();
-                    Intent intent = new Intent(ListBooksActivity.this, BookDisplayActivity.class);
+                    Intent intent = new Intent(BookListActivity.this, BookDisplayActivity.class);
                     intent.putExtra("id", bId);
                     startActivity(intent);
                 }
@@ -63,11 +63,11 @@ public class ListBooksActivity extends AppCompatActivity {
                     bId = bookList.get(pos).getId();
                     position = pos;
 
-                    AlertDialog.Builder builder = new AlertDialog.Builder(ListBooksActivity.this);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(BookListActivity.this);
 
                     builder.setPositiveButton(R.string.action_delete, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
-                            Toast.makeText(ListBooksActivity.this, R.string.text_bookdeleted, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(BookListActivity.this, R.string.text_bookdeleted, Toast.LENGTH_SHORT).show();
                             try {
                                 bookDao.delete(bookList.get(position));
                                 bookList.remove(position);
@@ -80,7 +80,7 @@ public class ListBooksActivity extends AppCompatActivity {
 
                     builder.setNeutralButton(R.string.action_edit, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
-                            Intent intent = new Intent(ListBooksActivity.this, AddBookActivity.class);
+                            Intent intent = new Intent(BookListActivity.this, BookAddActivity.class);
                             intent.putExtra("id", bId);
                             startActivity(intent);
                         }

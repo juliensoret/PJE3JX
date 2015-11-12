@@ -20,12 +20,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".AddBookActivity"
+            android:name=".BookAddActivity"
             android:label="@string/title_activity_add_book"
             android:parentActivityName=".MainActivity" >
         </activity>
         <activity
-            android:name=".ListBooksActivity"
+            android:name=".BookListActivity"
             android:label="@string/title_activity_list_books"
             android:parentActivityName=".MainActivity" >
         </activity>
@@ -47,7 +47,7 @@
         <activity
             android:name=".BookDisplayActivity"
             android:label="@string/title_activity_book_display"
-            android:parentActivityName=".ListBooksActivity" >
+            android:parentActivityName=".BookListActivity" >
         </activity>
         <activity
             android:name=".BookScanActivity"
