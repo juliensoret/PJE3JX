@@ -1,0 +1,44 @@
+<resources>
+    <string name="app_name">PJE3JX</string>
+
+    <string name="hello_world">正在创建…</string>
+
+    <string name="title_activity_add_book">添加图书</string>
+    <string name="title_activity_edit_book">编辑图书</string>
+    <string name="title_activity_book_display">图书信息</string>
+    <string name="title_activity_list_books">图书列表</string>
+    <string name="title_activity_filterslist">动态搜索</string>
+    <string name="title_activity_filterslist_add">创建搜索列表</string>
+
+    <string name="action_add">添加</string>
+    <string name="action_edit">编辑</string>
+    <string name="action_editdelete">编辑／删除</string>
+    <string name="action_list">图书列表</string>
+    <string name="action_filter">搜索</string>
+    <string name="action_delete">删除</string>
+
+    <string name="book_title">书名</string>
+    <string name="book_author">作者</string>
+    <string name="book_image">图片</string>
+    <string name="book_genre">分类</string>
+    <string name="book_date">日期</string>
+
+    <string name="filterslist_name">此次搜索名称</string>
+    <string name="filterslist_filters">标准</string>
+    <string name="filterslist_yearstart">在某年之后发表 </string>
+    <string name="filterslist_yearend">在某年之前发表</string>
+
+    <string name="text_cancel">取消</string>
+    <string name="text_no">不</string>
+    <string name="text_bookdeleted">图书已删除 ！</string>
+    <string name="text_bookadded">图书已添加 ！</string>
+    <string name="text_bookedited">图书已编辑 ！</string>
+    <string name="text_listadded">列表已创建 ！</string>
+    <string name="text_listdeleted">列表已删除 ！</string>
+    <string name="text_editdeletemessage">您是否想要编辑／删除 ？</string>
+    <string name="text_deletemessage">您是否想要删除 ？</string>
+
+    <string name="error_allfieldsnotfilled">请填完空格 ！</string>
+
+
+</resources>
