@@ -8,10 +8,19 @@ columnName=book_id
 generatedId=true
 # --field-end--
 # --field-start--
+fieldName=isbn
+# --field-end--
+# --field-start--
 fieldName=title
 # --field-end--
 # --field-start--
 fieldName=author
+# --field-end--
+# --field-start--
+fieldName=collection
+# --field-end--
+# --field-start--
+fieldName=publisher
 # --field-end--
 # --field-start--
 fieldName=image
@@ -21,6 +30,21 @@ fieldName=genre
 # --field-end--
 # --field-start--
 fieldName=date
+# --field-end--
+# --field-start--
+fieldName=language
+# --field-end--
+# --field-start--
+fieldName=description
+# --field-end--
+# --field-start--
+fieldName=comment
+# --field-end--
+# --field-start--
+fieldName=read
+# --field-end--
+# --field-start--
+fieldName=rating
 # --field-end--
 # --table-fields-end--
 # --table-end--

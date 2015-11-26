@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,10 +42,13 @@ import fr.univ_lille1.pje.pje3jx.data.DatabaseHelper;
 public class BookScanActivity extends AppCompatActivity {
 
     private DatabaseHelper databaseHelper = null;
-    private TextView authorText, titleText, isbnText, descriptionText, dateText;
+    private TextView authorText, titleText, descriptionText, dateText;
+    private EditText isbnText;
     private Button addButton;
     private ImageView thumbView;
-    private String bTitle, bAuthor, bGenre, bDescription;
+
+    private String bTitle, bAuthor, bCollection, bPublisher, bLanguage, bDescription;
+
     private int bDate;
 
     @Override
@@ -51,18 +56,29 @@ public class BookScanActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_scan);
 
-        IntentIntegrator scanIntegrator = new IntentIntegrator(BookScanActivity.this);
-        scanIntegrator.initiateScan();
+        if(this.getIntent().getBooleanExtra("scan", false)) {
+            IntentIntegrator scanIntegrator = new IntentIntegrator(BookScanActivity.this);
+            scanIntegrator.initiateScan();
+        }
 
+        ImageButton isbnButton = (ImageButton)findViewById(R.id.imageButtonIsbn);
         addButton = (Button)findViewById(R.id.add_button);
         addButton.setVisibility(View.GONE);
 
         authorText = (TextView)findViewById(R.id.book_author);
         titleText = (TextView)findViewById(R.id.book_title);
-        isbnText = (TextView) findViewById(R.id.book_isbn);
+        isbnText = (EditText)findViewById(R.id.editTextIsbn);
         descriptionText = (TextView)findViewById(R.id.book_description);
         dateText = (TextView)findViewById(R.id.book_date);
         thumbView = (ImageView)findViewById(R.id.thumb);
+
+        isbnButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                String bookSearchString = "https://www.googleapis.com/books/v1/volumes?"+
+                        "q=isbn:"+isbnText.getText()+"&key=AIzaSyB8rVQ4ng-hCn_LftJBDR_d689ObOlzR3A";
+                new GetBookInfo().execute(bookSearchString);
+            }
+        });
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
@@ -72,7 +88,7 @@ public class BookScanActivity extends AppCompatActivity {
             String scanContent = scanningResult.getContents();
             String scanFormat = scanningResult.getFormatName();
             Log.v("SCAN", "content: " + scanContent + " - format: " + scanFormat);
-            isbnText.setText("ISBN: " + scanContent);
+            isbnText.setText(scanContent);
 
             if(scanContent!=null && scanFormat!=null && scanFormat.equalsIgnoreCase("EAN_13")){
                 String bookSearchString = "https://www.googleapis.com/books/v1/volumes?"+
@@ -120,7 +136,7 @@ public class BookScanActivity extends AppCompatActivity {
 
         protected void onPostExecute(String result) {
 
-            bTitle = ""; bAuthor = ""; bGenre = ""; bDescription = "";
+            bTitle = bAuthor = bPublisher = bLanguage = bDescription = "";
             bDate = 0;
 
             try{
@@ -133,6 +149,9 @@ public class BookScanActivity extends AppCompatActivity {
                 try{ bTitle = volumeObject.getString("title"); }
                 catch(JSONException jse){ jse.printStackTrace(); }
 
+                try{ bTitle += " : " + volumeObject.getString("subtitle"); }
+                catch(JSONException jse){ jse.printStackTrace(); }
+
                 StringBuilder authorBuild = new StringBuilder("");
                 try{
                     JSONArray authorArray = volumeObject.getJSONArray("authors");
@@ -142,6 +161,12 @@ public class BookScanActivity extends AppCompatActivity {
                     }
                     bAuthor = authorBuild.toString();
                 }
+                catch(JSONException jse){ jse.printStackTrace(); }
+
+                try{ bPublisher = volumeObject.getString("publisher"); }
+                catch(JSONException jse){ jse.printStackTrace(); }
+
+                try{ bLanguage = volumeObject.getString("language"); }
                 catch(JSONException jse){ jse.printStackTrace(); }
 
                 try{ bDate = Integer.parseInt(volumeObject.getString("publishedDate").substring(0, 4)); }
@@ -170,7 +195,14 @@ public class BookScanActivity extends AppCompatActivity {
                             Toast.makeText(
                                     BookScanActivity.this, R.string.text_bookadded, Toast.LENGTH_SHORT
                             ).show();
-                            getHelper().getBookDao().create(new Book(bTitle, bAuthor, bGenre, bDate));
+                            getHelper().getBookDao().create(
+                                    new Book(
+                                            isbnText.getText().toString(),
+                                            bTitle, bAuthor, bPublisher, bDate, bLanguage
+                                    )
+                                            .setImage()
+                                            .setDescription(bDescription)
+                            );
                         } catch (SQLException e) {
                             e.printStackTrace();
                         }
