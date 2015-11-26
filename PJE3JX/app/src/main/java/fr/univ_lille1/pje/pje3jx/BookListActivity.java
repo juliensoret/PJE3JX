@@ -127,11 +127,45 @@ public class BookListActivity extends AppCompatActivity {
         try {
             final Dao<Book, Integer> bookDao = getHelper().getBookDao();
 
-            bookDao.create(new Book("Tintin en Chine", "Hergé", "BD humour", 2005));
-            bookDao.create(new Book("L'Affaire Tintin ", "Hergé", "BD humour", 1985));
-            bookDao.create(new Book("Les recettes de Tintin", "Hergé", "Cuisine", 2015));
-            bookDao.create(new Book("Cuisiner la morue", "Manuel Delaveiro", "Cuisine", 1995));
-            bookDao.create(new Book("Android pour les nuls", "Mark Truite", "Technologie", 2013));
+            bookDao.create(
+                    new Book("1111111111111", "Tintin en Chine", "Hergé", "Casterman", 2005, "French")
+                            .setImage()
+                            .setGenre("BD humour")
+                            .setDescription("L'histoire de Tintin sur le sol chinois.")
+                            .setComment("Très drôle")
+                            .setRead(true)
+                            .setRating(5)
+            );
+            bookDao.create(
+                    new Book("2222222222222", "Affaire Tintin", "Hergé", "Casterman", 1985, "French")
+                            .setImage()
+                            .setGenre("BD humour")
+                            .setDescription("Tintin est jugé pour avoir mangé Milou.")
+                            .setComment("Un peu cru, difficile à lire")
+                            .setRead(true)
+                            .setRating(3)
+            );
+            bookDao.create(
+                    new Book("3333333333333", "Les recettes de Tintin", "Hergé", "Casterman", 2015, "French")
+                            .setImage()
+                            .setGenre("Cuisine")
+                            .setDescription("Cuisine comme Tintin avec ses 48 recettes originales.")
+                            .setComment("J'ai testé les 4 premières recettes, c'était bof.")
+                            .setRead(true)
+                            .setRating(2)
+            );
+            bookDao.create(
+                    new Book("4444444444444", "Cuisiner la morue", "Manuel Delaveiro", "Portubooks", 1995, "French")
+                            .setImage()
+                            .setGenre("Cuisine")
+                            .setDescription("Les recettes portugaises de Manuel.")
+            );
+            bookDao.create(
+                    new Book("5555555555555", "Android pour les nuls", "Mark Truite", "TechnoD", 2013, "French")
+                            .setImage()
+                            .setGenre("Technologie")
+                            .setDescription("Aide à l'utilisation d'Android.")
+            );
 
         } catch (SQLException e) {
             e.printStackTrace();

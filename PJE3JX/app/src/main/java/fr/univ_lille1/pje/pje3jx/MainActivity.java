@@ -36,6 +36,8 @@ public class MainActivity extends ActionBarActivity {
                         }
                         else {
                             Intent intent = new Intent(MainActivity.this, BookScanActivity.class);
+                            if (which == 1)
+                                intent.putExtra("scan", true);
                             startActivity(intent);
                         }
                     }
