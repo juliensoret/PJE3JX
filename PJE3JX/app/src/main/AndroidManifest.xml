@@ -25,11 +25,6 @@
             android:parentActivityName=".MainActivity" >
         </activity>
         <activity
-            android:name=".BookListActivity"
-            android:label="@string/title_activity_list_books"
-            android:parentActivityName=".MainActivity" >
-        </activity>
-        <activity
             android:name=".FiltersListActivity"
             android:label="@string/title_activity_filterslist"
             android:parentActivityName=".MainActivity" >
@@ -52,6 +47,11 @@
         <activity
             android:name=".BookScanActivity"
             android:label="@string/title_activity_book_scan"
+            android:parentActivityName=".MainActivity" >
+        </activity>
+        <activity
+            android:name=".BookListActivity"
+            android:label="@string/title_fragment"
             android:parentActivityName=".MainActivity" >
         </activity>
     </application>

@@ -10,6 +10,8 @@
     <string name="title_activity_filterslist">Filtres dynamiques</string>
     <string name="title_activity_filterslist_add">Créer une liste de filtres</string>
     <string name="title_activity_book_scan">Scanner code-barres</string>
+    <string name="title_fragment">Liste des livres</string>
+
 
     <string name="action_add">Ajouter</string>
     <string-array name="add_array">

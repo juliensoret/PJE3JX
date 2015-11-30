@@ -9,6 +9,8 @@
     <string name="title_activity_list_books">图书列表</string>
     <string name="title_activity_filterslist">动态搜索</string>
     <string name="title_activity_filterslist_add">创建搜索列表</string>
+    <string name="title_fragment">图书列表</string>
+
 
     <string name="action_add">添加</string>
     <string name="action_edit">编辑</string>

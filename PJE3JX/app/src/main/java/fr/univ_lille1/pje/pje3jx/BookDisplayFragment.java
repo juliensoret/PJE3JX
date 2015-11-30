@@ -1,9 +1,9 @@
 package fr.univ_lille1.pje.pje3jx;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.j256.ormlite.android.apptools.OpenHelperManager;
@@ -11,24 +11,24 @@ import com.j256.ormlite.dao.Dao;
 
 import fr.univ_lille1.pje.pje3jx.data.DatabaseHelper;
 
-public class BookDisplayActivity extends AppCompatActivity {
-
+/**
+ * Created by fan on 15/11/19.
+ */
+public class BookDisplayFragment extends android.app.Fragment {
     private DatabaseHelper databaseHelper = null;
     TextView textViewTitle, textViewAuthor, textViewGenre, textViewDate;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_book_display);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_book_display, container, false);
 
+        textViewTitle = (TextView) view.findViewById(R.id.textViewTitle);
+        textViewAuthor = (TextView) view.findViewById(R.id.textViewAuthor);
+        textViewGenre = (TextView) view.findViewById(R.id.textViewGenre);
+        textViewDate = (TextView) view.findViewById(R.id.textViewDate);
 
-
-        textViewTitle = (TextView) findViewById(R.id.textViewTitle);
-        textViewAuthor = (TextView) findViewById(R.id.textViewAuthor);
-        textViewGenre = (TextView) findViewById(R.id.textViewGenre);
-        textViewDate = (TextView) findViewById(R.id.textViewDate);
-
-        final int id = this.getIntent().getIntExtra("id", -1);
+        Integer id = getArguments().getInt("id");
         if (id >= 0) {
             try {
                 final Dao<Book, Integer> bookDao = getHelper().getBookDao();
@@ -41,17 +41,19 @@ public class BookDisplayActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+        return view;
     }
+
 
     private DatabaseHelper getHelper() {
         if (databaseHelper == null) {
-            databaseHelper = OpenHelperManager.getHelper(this, DatabaseHelper.class);
+            databaseHelper = OpenHelperManager.getHelper(getActivity(), DatabaseHelper.class);
         }
         return databaseHelper;
     }
 
     @Override
-    protected void onDestroy() {
+    public void onDestroy() {
         super.onDestroy();
 
         if (databaseHelper != null) {
@@ -59,5 +61,4 @@ public class BookDisplayActivity extends AppCompatActivity {
             databaseHelper = null;
         }
     }
-
 }

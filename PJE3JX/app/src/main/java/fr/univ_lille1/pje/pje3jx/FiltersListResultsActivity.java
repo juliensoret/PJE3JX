@@ -22,7 +22,7 @@ public class FiltersListResultsActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_book_list);
+        setContentView(R.layout.fragment_book_list);//activity_book_list
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         BookFilterCatalog bfc = BookFilterCatalog.getInstance();
@@ -34,7 +34,7 @@ public class FiltersListResultsActivity extends AppCompatActivity{
             bookList = getHelper().getBookDao().queryForAll();
             filteredList = filter.getFilteredList(bookList);
 
-            mListView = (ListView) findViewById(R.id.listView);
+            mListView = (ListView) findViewById(R.id.listView);//listView
             final BookAdapter adapter = new BookAdapter(
                     FiltersListResultsActivity.this, filteredList
             );
