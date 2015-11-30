@@ -23,7 +23,7 @@ public class FiltersListResultsActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_book_list);
+        setContentView(R.layout.fragment_book_list);
 
         try {
             final Dao<FiltersList, Integer> filtersListDao = getHelper().getFiltersListDao();
