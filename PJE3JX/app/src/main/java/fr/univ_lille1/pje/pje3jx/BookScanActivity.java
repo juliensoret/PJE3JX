@@ -47,7 +47,7 @@ public class BookScanActivity extends AppCompatActivity {
     private Button addButton;
     private ImageView thumbView;
 
-    private String bTitle, bAuthor, bCollection, bPublisher, bLanguage, bDescription;
+    private String bTitle, bAuthor, bPublisher, bLanguage, bDescription;
 
     private int bDate;
 

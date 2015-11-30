@@ -60,6 +60,7 @@
     <string name="text_deletemessage">Voulez-vous supprimer cet élément ?</string>
 
     <string name="error_allfieldsnotfilled">Veuillez remplir les champs obligatoires ! (en gras)</string>
+    <string name="error_minimumfieldsnotfilled">Veuillez remplir le nom et au moins un filtre !</string>
     <string name="error_noscandatareceived">Pas de résultat !</string>
     <string name="error_datanotfound">Pas de résultat trouvé !</string>
 

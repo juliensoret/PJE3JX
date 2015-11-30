@@ -1,11 +1,13 @@
 package fr.univ_lille1.pje.pje3jx.data;
 
 import java.sql.SQLException;
+import java.util.logging.Filter;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import fr.univ_lille1.pje.pje3jx.FiltersList;
 import fr.univ_lille1.pje.pje3jx.R;
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.dao.Dao;
@@ -26,9 +28,10 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
      ************************************************/
 
     private static final String DATABASE_NAME = "pje3jx.db";
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 9;
 
     private Dao<Book, Integer> bookDao;
+    private Dao<FiltersList, Integer> filtersListDao;
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION, R.raw.ormlite_config);
@@ -44,6 +47,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
             // Create tables. This onCreate() method will be invoked only once of the application life time i.e. the first time when the application starts.
             TableUtils.createTable(connectionSource, Book.class);
+            TableUtils.createTable(connectionSource, FiltersList.class);
 
         } catch (SQLException e) {
             Log.e(DatabaseHelper.class.getName(), "Unable to create databases", e);
@@ -59,6 +63,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
             // existing database etc.
 
             TableUtils.dropTable(connectionSource, Book.class, true);
+            TableUtils.dropTable(connectionSource, FiltersList.class, true);
             onCreate(sqliteDatabase, connectionSource);
 
         } catch (SQLException e) {
@@ -75,5 +80,12 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
             bookDao = getDao(Book.class);
         }
         return bookDao;
+    }
+
+    public Dao<FiltersList, Integer> getFiltersListDao() throws SQLException {
+        if (filtersListDao == null) {
+            filtersListDao = getDao(FiltersList.class);
+        }
+        return filtersListDao;
     }
 }
