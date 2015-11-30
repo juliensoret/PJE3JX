@@ -36,7 +36,6 @@ public class BookAddActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_add);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         edIsbn = (EditText) findViewById(R.id.editTextIsbn);
         edTitle = (EditText) findViewById(R.id.editTextTitle);
@@ -56,6 +55,7 @@ public class BookAddActivity extends AppCompatActivity {
         addButton = (Button) findViewById(R.id.buttonAdd);
         error = (TextView) findViewById(R.id.textViewError);
 
+        // If there is a book to edit, pre-fill the EditTexts
         final int id = this.getIntent().getIntExtra("id", -1);
         if (id >= 0) {
             this.setTitle(R.string.title_activity_edit_book);
@@ -81,11 +81,12 @@ public class BookAddActivity extends AppCompatActivity {
             }
         }
 
+        // If the book is not read, hide the rating part
         if (!edRead.isChecked()) {
             linearLayoutRating.setVisibility(View.INVISIBLE);
             edRating.setVisibility(View.INVISIBLE);
         }
-
+        // Display/Hide the rating part depending on Read CheckBox
         edRead.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -156,6 +157,7 @@ public class BookAddActivity extends AppCompatActivity {
             }
         });
 
+        // Update the related views when the rating changes
         edRating.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
@@ -185,6 +187,9 @@ public class BookAddActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Check if the Title and the Author are correctly filled
+     */
     public boolean checkValues() {
         if(!edTitle.getText().toString().trim().equals(""))
             if(!edAuthor.getText().toString().trim().equals(""))
@@ -192,6 +197,9 @@ public class BookAddActivity extends AppCompatActivity {
         return false;
     }
 
+    /**
+     * Update ImageView and TextView with the corresponding image and text of the rating
+     */
     public void updateRatingViews(int rating) {
         if(rating > 4) {
             imageViewRating.setImageResource(R.mipmap.icon_rating_5);
