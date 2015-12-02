@@ -1,8 +1,10 @@
 package fr.univ_lille1.pje.pje3jx;
 
 import android.graphics.drawable.ColorDrawable;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -11,8 +13,7 @@ import com.j256.ormlite.dao.Dao;
 
 import fr.univ_lille1.pje.pje3jx.data.DatabaseHelper;
 
-public class BookDisplayActivity extends AppCompatActivity {
-
+public class BookDisplayFragment extends android.app.Fragment {
     private DatabaseHelper databaseHelper = null;
     TextView textViewIsbn, textViewTitle, textViewAuthor, textViewCollection, textViewPublisher,
             textViewGenre, textViewDate, textViewLanguage, textViewDescription, textViewComment,
@@ -20,26 +21,26 @@ public class BookDisplayActivity extends AppCompatActivity {
     ImageView imageViewCover, imageViewRead, imageViewRating;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_book_display);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.activity_book_display, container, false);
 
-        textViewIsbn = (TextView) findViewById(R.id.textViewIsbn);
-        textViewTitle = (TextView) findViewById(R.id.textViewTitle);
-        textViewAuthor = (TextView) findViewById(R.id.textViewAuthor);
-        textViewCollection = (TextView) findViewById(R.id.textViewCollection);
-        textViewPublisher = (TextView) findViewById(R.id.textViewPublisher);
-        imageViewCover = (ImageView) findViewById(R.id.imageViewCover);
-        textViewGenre = (TextView) findViewById(R.id.textViewGenre);
-        textViewDate = (TextView) findViewById(R.id.textViewDate);
-        textViewLanguage = (TextView) findViewById(R.id.textViewLanguage);
-        textViewDescription = (TextView) findViewById(R.id.textViewDescription);
-        textViewComment = (TextView) findViewById(R.id.textViewComment);
-        imageViewRead = (ImageView) findViewById(R.id.imageViewRead);
-        imageViewRating = (ImageView) findViewById(R.id.imageViewRating);
-        textViewRating = (TextView) findViewById(R.id.textViewRating);
+        textViewIsbn = (TextView) view.findViewById(R.id.textViewIsbn);
+        textViewTitle = (TextView) view.findViewById(R.id.textViewTitle);
+        textViewAuthor = (TextView) view.findViewById(R.id.textViewAuthor);
+        textViewCollection = (TextView) view.findViewById(R.id.textViewCollection);
+        textViewPublisher = (TextView) view.findViewById(R.id.textViewPublisher);
+        imageViewCover = (ImageView) view.findViewById(R.id.imageViewCover);
+        textViewGenre = (TextView) view.findViewById(R.id.textViewGenre);
+        textViewDate = (TextView) view.findViewById(R.id.textViewDate);
+        textViewLanguage = (TextView) view.findViewById(R.id.textViewLanguage);
+        textViewDescription = (TextView) view.findViewById(R.id.textViewDescription);
+        textViewComment = (TextView) view.findViewById(R.id.textViewComment);
+        imageViewRead = (ImageView) view.findViewById(R.id.imageViewRead);
+        imageViewRating = (ImageView) view.findViewById(R.id.imageViewRating);
+        textViewRating = (TextView) view.findViewById(R.id.textViewRating);
 
-        final int id = this.getIntent().getIntExtra("id", -1);
+        final int id = getArguments().getInt("id");
         if (id >= 0) {
             try {
                 final Dao<Book, Integer> bookDao = getHelper().getBookDao();
@@ -85,17 +86,18 @@ public class BookDisplayActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+        return view;
     }
 
     private DatabaseHelper getHelper() {
         if (databaseHelper == null) {
-            databaseHelper = OpenHelperManager.getHelper(this, DatabaseHelper.class);
+            databaseHelper = OpenHelperManager.getHelper(getActivity(), DatabaseHelper.class);
         }
         return databaseHelper;
     }
 
     @Override
-    protected void onDestroy() {
+    public void onDestroy() {
         super.onDestroy();
 
         if (databaseHelper != null) {
@@ -103,5 +105,4 @@ public class BookDisplayActivity extends AppCompatActivity {
             databaseHelper = null;
         }
     }
-
 }

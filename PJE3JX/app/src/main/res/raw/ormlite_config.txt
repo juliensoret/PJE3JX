@@ -8,10 +8,19 @@ columnName=book_id
 generatedId=true
 # --field-end--
 # --field-start--
+fieldName=isbn
+# --field-end--
+# --field-start--
 fieldName=title
 # --field-end--
 # --field-start--
 fieldName=author
+# --field-end--
+# --field-start--
+fieldName=collection
+# --field-end--
+# --field-start--
+fieldName=publisher
 # --field-end--
 # --field-start--
 fieldName=image
@@ -22,6 +31,65 @@ fieldName=genre
 # --field-start--
 fieldName=date
 # --field-end--
+# --field-start--
+fieldName=language
+# --field-end--
+# --field-start--
+fieldName=description
+# --field-end--
+# --field-start--
+fieldName=comment
+# --field-end--
+# --field-start--
+fieldName=read
+# --field-end--
+# --field-start--
+fieldName=rating
+# --field-end--
 # --table-fields-end--
+# --table-end--
+#################################
+
+#################################
+# --table-start--
+dataClass=fr.univ_lille1.pje.pje3jx.FiltersList
+tableName=filterslist
+# --table-fields-start--
+# --field-start--
+fieldName=filtersListId
+columnName=filterslist_id
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=name
+# --field-end--
+# --field-start--
+fieldName=titleFilter
+columnName=title_filter
+# --field-end--
+# --field-start--
+fieldName=authorFilter
+columnName=_authorfilter
+# --field-end--
+# --field-start--
+fieldName=collectionFilter
+columnName=collection_filter
+# --field-end--
+# --field-start--
+fieldName=genreFilter
+columnName=genre_filter
+# --field-end--
+# --field-start--
+fieldName=startYearFilter
+columnName=start_year_filter
+# --field-end--
+# --field-start--
+fieldName=endYearFilter
+columnName=end_year_filter
+# --field-end--
+# --field-start--
+fieldName=readFilter
+columnName=read_filter
+# --field-end--
 # --table-end--
 #################################

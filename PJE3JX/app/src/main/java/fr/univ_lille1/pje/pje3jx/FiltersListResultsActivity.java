@@ -8,6 +8,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.j256.ormlite.android.apptools.OpenHelperManager;
+import com.j256.ormlite.dao.Dao;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -22,15 +23,14 @@ public class FiltersListResultsActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_book_list);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        BookFilterCatalog bfc = BookFilterCatalog.getInstance();
-        final BookFilter filter = bfc.get(this.getIntent().getIntExtra("position", 0));
-
-        setTitle("Filtre : " + filter.getListName());
+        setContentView(R.layout.fragment_book_list);
 
         try {
+            final Dao<FiltersList, Integer> filtersListDao = getHelper().getFiltersListDao();
+            FiltersList filter = filtersListDao.queryForId(this.getIntent().getIntExtra("id", 0));
+
+            setTitle("Filtre : " + filter.getListName());
+
             bookList = getHelper().getBookDao().queryForAll();
             filteredList = filter.getFilteredList(bookList);
 
@@ -48,8 +48,8 @@ public class FiltersListResultsActivity extends AppCompatActivity{
                     startActivity(intent);
                 }
             });
-        }
-        catch (SQLException e) {
+
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
