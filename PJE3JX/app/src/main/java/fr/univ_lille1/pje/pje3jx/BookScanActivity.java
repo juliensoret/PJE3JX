@@ -56,12 +56,8 @@ public class BookScanActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_scan);
 
-        if(this.getIntent().getBooleanExtra("scan", false)) {
-            IntentIntegrator scanIntegrator = new IntentIntegrator(BookScanActivity.this);
-            scanIntegrator.initiateScan();
-        }
-
-        ImageButton isbnButton = (ImageButton)findViewById(R.id.imageButtonIsbn);
+        Button isbnButton = (Button)findViewById(R.id.buttonIsbn);
+        Button scanButton = (Button)findViewById(R.id.buttonScan);
         addButton = (Button)findViewById(R.id.add_button);
         addButton.setVisibility(View.GONE);
 
@@ -77,6 +73,12 @@ public class BookScanActivity extends AppCompatActivity {
                 String bookSearchString = "https://www.googleapis.com/books/v1/volumes?"+
                         "q=isbn:"+isbnText.getText()+"&key=AIzaSyB8rVQ4ng-hCn_LftJBDR_d689ObOlzR3A";
                 new GetBookInfo().execute(bookSearchString);
+            }
+        });
+        scanButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                IntentIntegrator scanIntegrator = new IntentIntegrator(BookScanActivity.this);
+                scanIntegrator.initiateScan();
             }
         });
     }

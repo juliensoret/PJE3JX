@@ -29,19 +29,30 @@
                     android:textStyle="italic" />
 
                 <EditText
-                    android:layout_width="200dp"
+                    android:layout_width="170dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/editTextIsbn"
                     android:inputType="number"
                     android:maxLength="13"/>
 
-                <ImageButton
-                    android:layout_width="wrap_content"
+                <Button
+                    android:layout_width="125dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/imageButtonIsbn"
-                    android:src="@mipmap/icon_search" />
+                    android:text="@string/action_search"
+                    android:id="@+id/buttonIsbn"
+                    android:drawableLeft="@mipmap/icon_search"
+                    android:drawableStart="@mipmap/icon_search" />
 
             </LinearLayout>
+
+            <Button
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:text="@string/action_scan"
+                android:id="@+id/buttonScan"
+                android:drawableLeft="@mipmap/icon_scan"
+                android:drawableStart="@mipmap/icon_scan"
+                android:layout_gravity="center_horizontal" />
 
             <TextView
                 android:id="@+id/book_title"

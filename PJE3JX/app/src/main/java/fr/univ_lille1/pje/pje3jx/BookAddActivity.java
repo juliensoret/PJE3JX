@@ -105,6 +105,8 @@ public class BookAddActivity extends AppCompatActivity {
                 if (checkValues()) {
                     try {
                         final Dao<Book, Integer> bookDao = getHelper().getBookDao();
+                        int date = edDate.getText().toString().length() > 0 ?
+                                Integer.parseInt(edDate.getText().toString()) : 0;
 
                         Book newBook;
                         if (editable != null) {
@@ -114,7 +116,7 @@ public class BookAddActivity extends AppCompatActivity {
                                     edTitle.getText().toString(),
                                     edAuthor.getText().toString(),
                                     edPublisher.getText().toString(),
-                                    Integer.parseInt(edDate.getText().toString()),
+                                    date,
                                     edLanguage.getText().toString()
                             );
                             Toast.makeText(
@@ -126,7 +128,7 @@ public class BookAddActivity extends AppCompatActivity {
                                     edTitle.getText().toString(),
                                     edAuthor.getText().toString(),
                                     edPublisher.getText().toString(),
-                                    Integer.parseInt(edDate.getText().toString()),
+                                    date,
                                     edLanguage.getText().toString()
                             );
                             newBook.setImage()

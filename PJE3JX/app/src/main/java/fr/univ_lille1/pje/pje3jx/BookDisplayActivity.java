@@ -51,7 +51,7 @@ public class BookDisplayActivity extends AppCompatActivity {
                 textViewPublisher.setText(b.getPublisher());
                 imageViewCover.setImageDrawable(new ColorDrawable(b.getImage()));
                 textViewGenre.setText(b.getGenre());
-                textViewDate.setText(b.getDate()+"");
+                if(b.getDate()!=0) textViewDate.setText(b.getDate()+"");
                 textViewLanguage.setText(b.getLanguage());
                 textViewDescription.setText(b.getDescription());
                 textViewComment.setText(b.getComment());
