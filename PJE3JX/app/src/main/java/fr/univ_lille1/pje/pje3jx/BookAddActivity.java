@@ -1,5 +1,8 @@
 package fr.univ_lille1.pje.pje3jx;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,6 +20,10 @@ import fr.univ_lille1.pje.pje3jx.data.DatabaseHelper;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.Dao;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.SQLException;
 
 public class BookAddActivity extends AppCompatActivity {
@@ -26,11 +33,12 @@ public class BookAddActivity extends AppCompatActivity {
             edDescription, edComment;
     CheckBox edRead;
     SeekBar edRating;
-    Button addButton;
+    Button addButton, addPhoto;
     Book editable;
     TextView error, textViewRating;
-    ImageView imageViewRating;
+    ImageView imageViewRating, edImage;
     LinearLayout linearLayoutRating;
+    static final int IMAGE_RESULT_CODE = 1;//use the camera to take photo
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +62,8 @@ public class BookAddActivity extends AppCompatActivity {
         textViewRating = (TextView) findViewById(R.id.textViewRating);
         addButton = (Button) findViewById(R.id.buttonAdd);
         error = (TextView) findViewById(R.id.textViewError);
+        edImage = (ImageView) findViewById(R.id.photo);
+        addPhoto = (Button) findViewById(R.id.buttonPhoto);
 
         // If there is a book to edit, pre-fill the EditTexts
         final int id = this.getIntent().getIntExtra("id", -1);
@@ -80,7 +90,6 @@ public class BookAddActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
-
         // If the book is not read, hide the rating part
         if (!edRead.isChecked()) {
             linearLayoutRating.setVisibility(View.INVISIBLE);
@@ -99,7 +108,20 @@ public class BookAddActivity extends AppCompatActivity {
                 }
             }
         });
-
+        //Take photo
+        addPhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String state = Environment.getExternalStorageState(); // juge if have SD card
+                if (state.equals(Environment.MEDIA_MOUNTED)) { // use the camera
+                    Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+                    startActivityForResult(intent, IMAGE_RESULT_CODE);
+                } else {
+                    Toast.makeText(BookAddActivity.this, "verifier si il y a de SD card", Toast.LENGTH_LONG)
+                            .show();
+                }
+            }
+        });
         addButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (checkValues()) {
@@ -158,7 +180,6 @@ public class BookAddActivity extends AppCompatActivity {
                 }
             }
         });
-
         // Update the related views when the rating changes
         edRating.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -187,6 +208,36 @@ public class BookAddActivity extends AppCompatActivity {
             OpenHelperManager.releaseHelper();
             databaseHelper = null;
         }
+    }
+
+    /*obtain the photo, display and save in the SD card */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode,Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode==IMAGE_RESULT_CODE && resultCode == RESULT_OK){
+            Bundle bundle = data.getExtras();
+            Bitmap bitmap = (Bitmap) bundle.get("data");
+            edImage.setImageBitmap(bitmap);//display
+            //save in the SD card
+            File appDir = new File(Environment.getExternalStorageDirectory(), "PJEImage");
+            if (!appDir.exists()) {
+                appDir.mkdir();
+            }
+            String fileName = edTitle.getText().toString() + ".jpg";
+            File file = new File(appDir, fileName);
+            try {
+                FileOutputStream fos = new FileOutputStream(file);
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+                fos.flush();
+                fos.close();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
     }
 
     /**

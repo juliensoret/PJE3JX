@@ -1,7 +1,14 @@
 package fr.univ_lille1.pje.pje3jx;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.widget.ImageView;
+
 import com.j256.ormlite.field.DatabaseField;
+
+import java.io.File;
 
 public class Book {
 
@@ -13,7 +20,7 @@ public class Book {
     private String author;
     private String collection;
     private String publisher;
-    private int image;
+    private String image;
     private String genre;
     private int date;
     private String language;
@@ -21,6 +28,7 @@ public class Book {
     private String comment;
     private boolean read;
     private int rating;
+
 
 
     public Book(){}
@@ -46,11 +54,7 @@ public class Book {
     }
 
     public Book setImage() {
-        this.image = Color.rgb(
-                (int) (Math.random() * 200) + 50,
-                (int) (Math.random() * 200) + 50,
-                (int) (Math.random() * 200) + 50
-        );
+        this.image = "/sdcard/PJEImage/"+title+".jpg";
         return this;
     }
 
@@ -108,9 +112,9 @@ public class Book {
         return publisher;
     }
 
-    public int getImage() {
+    public String getImage() {
         return image;
-    }
+    }//path photo
 
     public String getGenre() {
         return genre;
