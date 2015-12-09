@@ -1,14 +1,11 @@
 package fr.univ_lille1.pje.pje3jx;
 
-import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.Dao;
-
 import fr.univ_lille1.pje.pje3jx.data.DatabaseHelper;
 
 public class BookDisplayActivity extends AppCompatActivity {
@@ -49,12 +46,15 @@ public class BookDisplayActivity extends AppCompatActivity {
                 textViewAuthor.setText(b.getAuthor());
                 textViewCollection.setText(b.getCollection());
                 textViewPublisher.setText(b.getPublisher());
-                imageViewCover.setImageDrawable(new ColorDrawable(b.getImage()));
                 textViewGenre.setText(b.getGenre());
                 if(b.getDate()!=0) textViewDate.setText(b.getDate()+"");
                 textViewLanguage.setText(b.getLanguage());
                 textViewDescription.setText(b.getDescription());
                 textViewComment.setText(b.getComment());
+                if(b.getImage()!=null)
+                    imageViewCover.setImageBitmap(b.getImage());
+                else
+                    imageViewCover.setImageResource(R.mipmap.defaultphoto);
                 if(b.isRead())
                     imageViewRead.setImageResource(R.mipmap.icon_check);
                 if(b.getRating() > 4) {

@@ -1,7 +1,20 @@
 package fr.univ_lille1.pje.pje3jx;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Environment;
+import android.widget.ImageView;
+
 import com.j256.ormlite.field.DatabaseField;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Book {
 
@@ -13,7 +26,7 @@ public class Book {
     private String author;
     private String collection;
     private String publisher;
-    private int image;
+    private String image;
     private String genre;
     private int date;
     private String language;
@@ -21,6 +34,7 @@ public class Book {
     private String comment;
     private boolean read;
     private int rating;
+
 
 
     public Book(){}
@@ -45,12 +59,23 @@ public class Book {
         this.language = nlanguage;
     }
 
+    public String setImagePath(){
+        String str,imagePath;
+        Date date;
+        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
+        date =new Date();
+        str=format.format(date);
+        imagePath = "/sdcard/PJEImage/"+str+".jpg";
+        return imagePath;
+    }
+
     public Book setImage() {
-        this.image = Color.rgb(
-                (int) (Math.random() * 200) + 50,
-                (int) (Math.random() * 200) + 50,
-                (int) (Math.random() * 200) + 50
-        );
+        this.image = setImagePath();
+        return this;
+    }
+
+    public Book setImage(String filepath){
+        this.image = filepath;
         return this;
     }
 
@@ -108,8 +133,10 @@ public class Book {
         return publisher;
     }
 
-    public int getImage() {
-        return image;
+    public String getImagePath() {return image;}
+
+    public Bitmap getImage() {
+        return getPhoto(image);
     }
 
     public String getGenre() {
@@ -138,6 +165,37 @@ public class Book {
 
     public int getRating() {
         return rating;
+    }
+
+    public Bitmap getPhoto(String path){
+        String filepath;
+        filepath = path;
+        Bitmap bm = null;
+        if(filepath!=null) {
+            File file = new File(filepath);
+            if (file.exists()) {
+                bm = BitmapFactory.decodeFile(filepath);
+            }
+        }
+        return bm;
+    }
+
+    public void saveInSD(Bitmap bitmap){
+        File appDir = new File(Environment.getExternalStorageDirectory(), "PJEImage");
+        if (!appDir.exists()) {
+            appDir.mkdir();
+        }
+        File file = new File(getImagePath());
+        try {
+            FileOutputStream fos = new FileOutputStream(file);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+            fos.flush();
+            fos.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

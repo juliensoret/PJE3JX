@@ -5,6 +5,7 @@ import android.app.Fragment;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,11 +24,13 @@ import fr.univ_lille1.pje.pje3jx.data.DatabaseHelper;
 
 public class BookListFragment extends Fragment {
     private DatabaseHelper databaseHelper = null;
+    private BookAdapter adapter;
     private Dao<Book, Integer> bookDao;
     private List<Book> bookList;
     ListView mListView;
     int bId, position;
     private boolean isTwoPane;
+    private final int RESULT_OK = 1;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -40,10 +43,8 @@ public class BookListFragment extends Fragment {
                 fillBookListWithExamples();
                 bookList = bookDao.queryForAll();
             }
-
             mListView = (ListView) view.findViewById(R.id.listView);
-
-            final BookAdapter adapter = new BookAdapter(
+            adapter = new BookAdapter(
                     getActivity(), bookList
             );
             mListView.setAdapter(adapter);
@@ -102,7 +103,7 @@ public class BookListFragment extends Fragment {
                         public void onClick(DialogInterface dialog, int id) {
                             Intent intent = new Intent(getActivity(), BookAddActivity.class);
                             intent.putExtra("id", bId);
-                            startActivity(intent);
+                            startActivityForResult(intent, RESULT_OK);
                         }
                     });
 
@@ -138,6 +139,24 @@ public class BookListFragment extends Fragment {
         if (databaseHelper != null) {
             OpenHelperManager.releaseHelper();
             databaseHelper = null;
+        }
+    }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode,Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+        switch(requestCode){
+            case RESULT_OK:
+                bookList.clear();
+                try {
+                    bookDao = getHelper().getBookDao();
+                    bookList.addAll(bookDao.queryForAll());
+                    adapter.notifyDataSetChanged();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                break;
+            default:
+                break;
         }
     }
 

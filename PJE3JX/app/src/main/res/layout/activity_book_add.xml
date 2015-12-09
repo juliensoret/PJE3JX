@@ -212,6 +212,21 @@
             android:progress="0"
             android:indeterminate="false" />
 
+
+        <Button
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:text="Prendre une photo"
+            android:id="@+id/buttonPhoto"
+            android:drawableLeft="@mipmap/icon_camera"
+            android:drawableStart="@mipmap/icon_camera"
+            android:layout_gravity="center_horizontal" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/photo" />
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
