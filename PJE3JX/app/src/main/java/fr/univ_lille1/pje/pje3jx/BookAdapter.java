@@ -1,6 +1,8 @@
 package fr.univ_lille1.pje.pje3jx;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
@@ -10,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.File;
 import java.util.List;
 
 public class BookAdapter extends ArrayAdapter<Book> {
@@ -39,8 +42,11 @@ public class BookAdapter extends ArrayAdapter<Book> {
 
         viewHolder.title.setText(book.getTitle());
         viewHolder.author.setText(book.getAuthor());
-        viewHolder.avatar.setImageDrawable(new ColorDrawable(book.getImage()));
         viewHolder.genre.setText(book.getGenre());
+        if(book.getImage()!=null)
+            viewHolder.avatar.setImageBitmap(book.getImage());
+        else
+            viewHolder.avatar.setImageResource(R.mipmap.defaultphoto);
 
         return convertView;
     }

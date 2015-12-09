@@ -30,6 +30,7 @@ public class FiltersListActivity extends AppCompatActivity {
     private List<String> filtersListNames = new ArrayList<>();
     ListView filtersListView;
     Button addButton;
+    ArrayAdapter<String> adapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -46,7 +47,7 @@ public class FiltersListActivity extends AppCompatActivity {
             }
         });
 
-        final ArrayAdapter<String> adapter = new ArrayAdapter<>(
+       adapter = new ArrayAdapter<>(
                 this,
                 android.R.layout.simple_expandable_list_item_1,
                 filtersListNames
@@ -80,7 +81,8 @@ public class FiltersListActivity extends AppCompatActivity {
                         Toast.makeText(FiltersListActivity.this, R.string.text_listdeleted, Toast.LENGTH_SHORT).show();
                         try {
                             filtersListDao.deleteById(filtersListList.get(position).getId());
-                            finish();
+                            filtersListNames.remove(position);
+                            filtersListView.invalidateViews();
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -143,19 +145,21 @@ public class FiltersListActivity extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
+        filtersListNames.clear();
         try {
             filtersListDao = getHelper().getFiltersListDao();
             filtersListList = filtersListDao.queryForAll();
-            Log.d("d filterslistlist", filtersListList.size() + "");
             if(filtersListList.isEmpty()) {
                 fillWithExamples();
                 filtersListList = filtersListDao.queryForAll();
             }
-            filtersListNames.clear();
             for (FiltersList fl : filtersListList)
                 filtersListNames.add(fl.getListName());
+            adapter.notifyDataSetChanged();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
     }
 }

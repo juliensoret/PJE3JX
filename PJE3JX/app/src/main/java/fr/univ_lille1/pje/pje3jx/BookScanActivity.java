@@ -10,15 +10,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
-
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.StatusLine;
@@ -28,7 +25,6 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -36,6 +32,7 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 import java.sql.SQLException;
+;
 
 import fr.univ_lille1.pje.pje3jx.data.DatabaseHelper;
 
@@ -46,9 +43,7 @@ public class BookScanActivity extends AppCompatActivity {
     private EditText isbnText;
     private Button addButton;
     private ImageView thumbView;
-
-    private String bTitle, bAuthor, bPublisher, bLanguage, bDescription;
-
+    private String bTitle, bAuthor, bPublisher, bLanguage, bDescription,filepath;
     private int bDate;
 
     @Override
@@ -137,7 +132,6 @@ public class BookScanActivity extends AppCompatActivity {
         }
 
         protected void onPostExecute(String result) {
-
             bTitle = bAuthor = bPublisher = bLanguage = bDescription = "";
             bDate = 0;
 
@@ -180,6 +174,7 @@ public class BookScanActivity extends AppCompatActivity {
                 try{
                     JSONObject imageInfo = volumeObject.getJSONObject("imageLinks");
                     new GetBookThumb().execute(imageInfo.getString("smallThumbnail"));
+
                 }
                 catch(JSONException jse){
                     thumbView.setImageBitmap(null);
@@ -197,12 +192,14 @@ public class BookScanActivity extends AppCompatActivity {
                             Toast.makeText(
                                     BookScanActivity.this, R.string.text_bookadded, Toast.LENGTH_SHORT
                             ).show();
+
+
                             getHelper().getBookDao().create(
                                     new Book(
                                             isbnText.getText().toString(),
                                             bTitle, bAuthor, bPublisher, bDate, bLanguage
                                     )
-                                            .setImage()
+                                            .setImage(filepath)
                                             .setDescription(bDescription)
                             );
                         } catch (SQLException e) {
@@ -211,6 +208,7 @@ public class BookScanActivity extends AppCompatActivity {
                         finish();
                     }
                 });
+
                 addButton.setEnabled(true);
             }
             catch (Exception e) {
@@ -222,6 +220,8 @@ public class BookScanActivity extends AppCompatActivity {
                 addButton.setVisibility(View.GONE);
             }
         }
+
+
     }
 
     private DatabaseHelper getHelper() {
@@ -254,6 +254,10 @@ public class BookScanActivity extends AppCompatActivity {
 
         protected void onPostExecute(String result) {
             thumbView.setImageBitmap(thumbImg);
+            Book book = new Book();
+            book.setImage();
+            filepath = book.getImagePath();
+            book.saveInSD(thumbImg);
         }
     }
 }
