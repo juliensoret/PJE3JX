@@ -1,6 +1,9 @@
 package fr.univ_lille1.pje.pje3jx;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -8,6 +11,8 @@ import android.widget.TextView;
 
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.Dao;
+
+import java.io.File;
 
 import fr.univ_lille1.pje.pje3jx.data.DatabaseHelper;
 
@@ -18,6 +23,7 @@ public class BookDisplayActivity extends AppCompatActivity {
             textViewGenre, textViewDate, textViewLanguage, textViewDescription, textViewComment,
             textViewRating;
     ImageView imageViewCover, imageViewRead, imageViewRating;
+    private String filepath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,12 +55,18 @@ public class BookDisplayActivity extends AppCompatActivity {
                 textViewAuthor.setText(b.getAuthor());
                 textViewCollection.setText(b.getCollection());
                 textViewPublisher.setText(b.getPublisher());
-                imageViewCover.setImageDrawable(new ColorDrawable(b.getImage()));
                 textViewGenre.setText(b.getGenre());
                 if(b.getDate()!=0) textViewDate.setText(b.getDate()+"");
                 textViewLanguage.setText(b.getLanguage());
                 textViewDescription.setText(b.getDescription());
                 textViewComment.setText(b.getComment());
+                /*display photo*/
+                filepath = b.getImage();
+                File file = new File(filepath);
+                if (file.exists()) {
+                    Bitmap bm = BitmapFactory.decodeFile(filepath);
+                    imageViewCover.setImageBitmap(bm);
+                }
                 if(b.isRead())
                     imageViewRead.setImageResource(R.mipmap.icon_check);
                 if(b.getRating() > 4) {
