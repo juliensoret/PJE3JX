@@ -46,4 +46,14 @@
         android:drawableLeft="@mipmap/icon_search"
         android:drawableStart="@mipmap/icon_search" />
 
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="@string/action_database"
+        android:id="@+id/button4"
+        android:layout_below="@+id/button3"
+        android:layout_centerHorizontal="true"
+        android:drawableLeft="@mipmap/icon_db"
+        android:drawableStart="@mipmap/icon_db" />
+
 </RelativeLayout>
