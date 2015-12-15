@@ -24,6 +24,11 @@
     <string name="action_search">Chercher</string>
     <string name="action_scan">Scanner</string>
     <string name="action_takeapicture">Prendre une photo</string>
+    <string name="action_database">Base de Données</string>
+    <string-array name="action_database_array">
+        <item>Sauvegarder (Exporter)</item>
+        <item>Importer une base de données</item>
+    </string-array>
     <string name="action_settings">Paramètres</string>
 
     <string name="book_isbn">ISBN</string>
@@ -60,11 +65,15 @@
     <string name="text_listdeleted">Liste supprimée !</string>
     <string name="text_editdeletemessage">Voulez-vous éditer/supprimer cet élément ?</string>
     <string name="text_deletemessage">Voulez-vous supprimer cet élément ?</string>
+    <string name="text_databasesaved">Sauvegardée dans le fichier %1$s !</string>
+    <string name="text_databaseimported">Sauvegarde importée !</string>
+    <string name="text_savesfound">Sauvegardes trouvées</string>
 
     <string name="error_allfieldsnotfilled">Veuillez remplir les champs obligatoires ! (en gras)</string>
     <string name="error_minimumfieldsnotfilled">Veuillez remplir le nom et au moins un filtre !</string>
     <string name="error_noscandatareceived">Pas de résultat !</string>
     <string name="error_datanotfound">Pas de résultat trouvé !</string>
+    <string name="error_savesnotfound">Aucune sauvegarde de type " pje3jx….db " !</string>
 
 
 </resources>
