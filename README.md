@@ -1,23 +1,11 @@
 # PJE3JX
-Par Xiaofan XU et Julien SORET
+Projet réalisé par Xiaofan XU et Julien SORET dans le cadre du cours de PJE n°3 : Gestion d'une collection de livres ou films sous Android
 
-![logo](https://cloud.githubusercontent.com/assets/9967599/11018132/ee4a0302-85b9-11e5-8719-b222ac800e00.png)
+![logo](https://cloud.githubusercontent.com/assets/9967599/11847137/3e38c238-a41c-11e5-9afb-a9fcfe6bfc14.png)
+
+## ¤ Images 
+
+![screenshot_2015-12-16-17-42-56](https://cloud.githubusercontent.com/assets/9967599/11847332/2c0158ea-a41d-11e5-991b-461878a30c95.png) ![screenshot_2015-12-16-17-43-29](https://cloud.githubusercontent.com/assets/9967599/11847336/2f9adbe8-a41d-11e5-8220-abe6d2e44fba.png)
 
 ## ¤ Installation
 Projet à ouvrir dans Android Studio.
-
-## ¤ Travaux
-### Itération 1
-*Créer un livre* et *afficher la liste des livres enregistrés* sont deux actions possibles à partir du menu dans l'activité principale.
-
-### Itération 2
-La modification n'est pas encore implémenté : En attendant il faut supprimer un livre et le recréer.
-Pour supprimer un livre, appuyer longuement sur celui-ci dans la liste.
-
-### Itération 3
-Pour l'instant, le filtrage peut se faire par le *genre* du livre.
-Les listes dynamiques sont visibles en appuyant sur le bouton "Filtrer" du menu dans l'activité principale.
-Pour ajouter un filtre, il faut entrer le critère souhaité puis faire "Ajouter". 
-Le filtre apparait ensuite dans la liste en dessous. 
-En cliquant sur un filtre, les livres ayant un genre correspondant au critère sont listés.
-Pour supprimer un filtre, appuyer longuement sur celle-ci dans la liste.
