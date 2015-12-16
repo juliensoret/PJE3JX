@@ -49,7 +49,7 @@
     <string name="book_collection">系列丛书</string>
     <string name="book_comment">评论</string>
     <string name="book_description">简介</string>
-    <string name="book_isbn"></string>
+    <string name="book_isbn">ISBN</string>
     <string name="book_language">语言</string>
     <string name="book_publisher">出版社</string>
     <string name="book_rating">评分</string>
@@ -64,6 +64,16 @@
     <string name="error_minimumfieldsnotfilled">请填写搜索名称和至少一个搜索标准</string>
     <string name="error_noscandatareceived">无结果</string>
     <string name="title_activity_book_scan">扫描条形码</string>
+    <string name="action_database">数据库</string>
+    <string-array name="action_database_array">
+        <item>保存 (导出)</item>
+        <item>导入数据库</item>
+    </string-array>
+    <string name="action_takeapicture">拍照</string>
+    <string name="error_savesnotfound">没有“pje3jx....db”类型的保存</string>
+    <string name="text_databaseimported">导入保存</string>
+    <string name="text_databasesaved">在文件%1$s中保存</string>
+    <string name="text_savesfound">找到保存</string>
 
 
 </resources>
