@@ -5,7 +5,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -125,16 +124,8 @@ public class FiltersListActivity extends AppCompatActivity {
         bf.setReadFilter(1);
         filtersListDao.create(bf);
 
-        bf = new FiltersList("Livres de Hergé");
-        bf.setAuthorFilter("hergé");
-        filtersListDao.create(bf);
-
-        bf = new FiltersList("Pour la Cuisine");
-        bf.setGenreFilter("cuisine");
-        filtersListDao.create(bf);
-
         bf = new FiltersList("Mes Romans");
-        bf.setGenreFilter("genre");
+        bf.setGenreFilter("roman");
         filtersListDao.create(bf);
 
         bf = new FiltersList("Après l'année 2000");
@@ -156,10 +147,8 @@ public class FiltersListActivity extends AppCompatActivity {
             for (FiltersList fl : filtersListList)
                 filtersListNames.add(fl.getListName());
             adapter.notifyDataSetChanged();
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 }

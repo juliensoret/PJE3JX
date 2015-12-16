@@ -2,15 +2,11 @@ package fr.univ_lille1.pje.pje3jx;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Environment;
-import android.widget.ImageView;
 
 import com.j256.ormlite.field.DatabaseField;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -35,8 +31,6 @@ public class Book {
     private boolean read;
     private int rating;
 
-
-
     public Book(){}
 
     public Book(String isbn, String title, String author, String publisher, int date,
@@ -60,13 +54,8 @@ public class Book {
     }
 
     public String setImagePath(){
-        String str,imagePath;
-        Date date;
-        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
-        date =new Date();
-        str=format.format(date);
-        imagePath = "/sdcard/PJEImage/"+str+".jpg";
-        return imagePath;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+        return Environment.getExternalStorageDirectory().getPath()+"/PJEImage/"+sdf.format(new Date())+".jpg";
     }
 
     public Book setImage() {
@@ -133,7 +122,9 @@ public class Book {
         return publisher;
     }
 
-    public String getImagePath() {return image;}
+    public String getImagePath() {
+        return image;
+    }
 
     public Bitmap getImage() {
         return getPhoto(image);
@@ -191,8 +182,6 @@ public class Book {
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
             fos.flush();
             fos.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }

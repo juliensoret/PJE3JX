@@ -1,7 +1,6 @@
 package fr.univ_lille1.pje.pje3jx.data;
 
 import java.sql.SQLException;
-import java.util.logging.Filter;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

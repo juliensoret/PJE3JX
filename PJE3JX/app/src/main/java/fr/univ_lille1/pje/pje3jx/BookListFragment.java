@@ -5,7 +5,6 @@ import android.app.Fragment;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,11 +54,8 @@ public class BookListFragment extends Fragment {
                 public void onItemClick(AdapterView<?> adapterView, View view, int pos, long id) {
                     bId = bookList.get(pos).getId();
 
-                    if (getActivity().findViewById(R.id.details_layout) != null) {
-                        isTwoPane = true;
-                    } else {
-                        isTwoPane = false;
-                    }
+                    isTwoPane = (getActivity().findViewById(R.id.details_layout) != null);
+
                     if (isTwoPane) {
                         BookDisplayFragment fragment = new BookDisplayFragment();
                         Bundle nBundle = new Bundle();
@@ -162,43 +158,48 @@ public class BookListFragment extends Fragment {
 
     public void fillBookListWithExamples() throws SQLException {
         bookDao.create(
-                new Book("1111111111111", "Tintin en Chine", "Hergé", "Casterman", 2005, "French")
+                new Book("9782253094142", "Germinal", "Émile Zola", "Le Livre de Poche", 2011, "French")
                         .setImage()
-                        .setGenre("BD humour")
-                        .setDescription("L'histoire de Tintin sur le sol chinois.")
-                        .setComment("Très drôle")
-                        .setRead(true)
-                        .setRating(5)
-        );
-        bookDao.create(
-                new Book("2222222222222", "Affaire Tintin", "Hergé", "Casterman", 1985, "French")
-                        .setImage()
-                        .setGenre("BD humour")
-                        .setDescription("Tintin est jugé pour avoir mangé Milou.")
-                        .setComment("Un peu cru, difficile à lire")
+                        .setGenre("Roman")
+                        .setDescription("Voici, dans la France moderne et industrielle, les " +
+                                "\" Misérables \" de Zola. Ce roman des mineurs, c'est aussi " +
+                                "l'Enfer, dans un monde dantesque, où l'on \" voyage au bout de " +
+                                "la nuit \". Mais à la fin du prodigieux itinéraire au centre de " +
+                                "la terre, du fond du souterrain où il a vécu si longtemps " +
+                                "écrasé, l'homme enfin se redresse et surgit dans une révolte " +
+                                "pleine d'espoirs.\n" +
+                                "C'est la plus belle et la plus grande œuvre de Zola, le poème " +
+                                "de la fraternité dans la misère, et le roman de la condition " +
+                                "humaine.")
+                        .setComment("Un peu long")
                         .setRead(true)
                         .setRating(3)
         );
         bookDao.create(
-                new Book("3333333333333", "Les recettes de Tintin", "Hergé", "Casterman", 2015, "French")
+                new Book("9781781101032", "Harry Potter à L’école des Sorciers",
+                        "J.K. Rowling, Jean-François Ménard", "Pottermore", 1997, "French")
                         .setImage()
-                        .setGenre("Cuisine")
-                        .setDescription("Cuisine comme Tintin avec ses 48 recettes originales.")
-                        .setComment("J'ai testé les 4 premières recettes, c'était bof.")
+                        .setGenre("Roman")
+                        .setDescription("Le jour de ses onze ans, Harry Potter, un orphelin élevé" +
+                                " par un oncle et une tante qui le détestent, voit son existence" +
+                                " bouleversée. Un géant vient le chercher pour l’emmener à " +
+                                "Poudlard, une école de sorcellerie!")
+                        .setComment("Très intéressant. La première partie est la meilleure!")
                         .setRead(true)
-                        .setRating(2)
+                        .setRating(5)
         );
         bookDao.create(
-                new Book("4444444444444", "Cuisiner la morue", "Manuel Delaveiro", "Portubooks", 1995, "French")
+                new Book("9782709638821", "Steve Jobs", "Walter Isaacson", "JC Lattès", 2011, "French")
                         .setImage()
-                        .setGenre("Cuisine")
-                        .setDescription("Les recettes portugaises de Manuel.")
-        );
-        bookDao.create(
-                new Book("5555555555555", "Android pour les nuls", "Mark Truite", "TechnoD", 2013, "French")
-                        .setImage()
-                        .setGenre("Technologie")
-                        .setDescription("Aide à l'utilisation d'Android.")
+                        .setGenre("Biographie")
+                        .setDescription("Suggéré par le créateur d’Apple, qui fait face à une " +
+                                "maladie redoutable, Steve Jobs, à partir de plus de quarante " +
+                                "entretiens menés sur plus de deux ans et d’interviews d’une " +
+                                "centaine de membres de sa famille, amis, rivaux, concurrents " +
+                                "et collègues.")
+                        .setComment("Très mauvais, je préfère Android.")
+                        .setRead(true)
+                        .setRating(0)
         );
     }
 

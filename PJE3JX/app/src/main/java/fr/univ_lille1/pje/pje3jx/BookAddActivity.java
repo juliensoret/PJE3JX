@@ -20,13 +20,7 @@ import fr.univ_lille1.pje.pje3jx.data.DatabaseHelper;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.Dao;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class BookAddActivity extends AppCompatActivity {
 
@@ -122,9 +116,6 @@ public class BookAddActivity extends AppCompatActivity {
                 if (state.equals(Environment.MEDIA_MOUNTED)) {
                     Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
                     startActivityForResult(intent, IMAGE_RESULT_CODE);
-                } else {
-                    Toast.makeText(BookAddActivity.this, "verifier si il y a de SD card", Toast.LENGTH_LONG)
-                            .show();
                 }
             }
         });
@@ -171,7 +162,7 @@ public class BookAddActivity extends AppCompatActivity {
                                 .setRead(edRead.isChecked())
                                 .setRating(edRating.getProgress())
                                 .setImage()
-                                .saveInSD(bitmap);
+                                .saveInSD(bitmap)
                         ;
                         bookDao.createOrUpdate(newBook);
 

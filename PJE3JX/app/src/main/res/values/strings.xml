@@ -23,6 +23,7 @@
     <string name="action_delete">Supprimer</string>
     <string name="action_search">Chercher</string>
     <string name="action_scan">Scanner</string>
+    <string name="action_takeapicture">Prendre une photo</string>
     <string name="action_settings">Paramètres</string>
 
     <string name="book_isbn">ISBN</string>

@@ -1,10 +1,6 @@
 package fr.univ_lille1.pje.pje3jx;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +8,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.io.File;
 import java.util.List;
 
 public class BookAdapter extends ArrayAdapter<Book> {
@@ -34,7 +29,7 @@ public class BookAdapter extends ArrayAdapter<Book> {
             viewHolder.title = (TextView) convertView.findViewById(R.id.title);
             viewHolder.author = (TextView) convertView.findViewById(R.id.author);
             viewHolder.avatar = (ImageView) convertView.findViewById(R.id.avatar);
-            viewHolder.genre = (TextView) convertView.findViewById(R.id.genre);
+            viewHolder.info = (TextView) convertView.findViewById(R.id.info);
             convertView.setTag(viewHolder);
         }
 
@@ -42,7 +37,7 @@ public class BookAdapter extends ArrayAdapter<Book> {
 
         viewHolder.title.setText(book.getTitle());
         viewHolder.author.setText(book.getAuthor());
-        viewHolder.genre.setText(book.getGenre());
+        viewHolder.info.setText(book.getDate() + " - " + book.getPublisher());
         if(book.getImage()!=null)
             viewHolder.avatar.setImageBitmap(book.getImage());
         else
@@ -55,6 +50,6 @@ public class BookAdapter extends ArrayAdapter<Book> {
         public TextView title;
         public TextView author;
         public ImageView avatar;
-        public TextView genre;
+        public TextView info;
     }
 }

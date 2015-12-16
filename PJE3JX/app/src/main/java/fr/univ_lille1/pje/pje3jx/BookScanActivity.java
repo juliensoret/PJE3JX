@@ -32,7 +32,6 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 import java.sql.SQLException;
-;
 
 import fr.univ_lille1.pje.pje3jx.data.DatabaseHelper;
 
@@ -43,7 +42,7 @@ public class BookScanActivity extends AppCompatActivity {
     private EditText isbnText;
     private Button addButton;
     private ImageView thumbView;
-    private String bTitle, bAuthor, bPublisher, bLanguage, bDescription,filepath;
+    private String bTitle, bAuthor, bPublisher, bLanguage, bDescription, filepath;
     private int bDate;
 
     @Override
@@ -174,7 +173,6 @@ public class BookScanActivity extends AppCompatActivity {
                 try{
                     JSONObject imageInfo = volumeObject.getJSONObject("imageLinks");
                     new GetBookThumb().execute(imageInfo.getString("smallThumbnail"));
-
                 }
                 catch(JSONException jse){
                     thumbView.setImageBitmap(null);
@@ -192,8 +190,6 @@ public class BookScanActivity extends AppCompatActivity {
                             Toast.makeText(
                                     BookScanActivity.this, R.string.text_bookadded, Toast.LENGTH_SHORT
                             ).show();
-
-
                             getHelper().getBookDao().create(
                                     new Book(
                                             isbnText.getText().toString(),
@@ -220,8 +216,6 @@ public class BookScanActivity extends AppCompatActivity {
                 addButton.setVisibility(View.GONE);
             }
         }
-
-
     }
 
     private DatabaseHelper getHelper() {
