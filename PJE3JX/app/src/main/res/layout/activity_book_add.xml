@@ -216,7 +216,7 @@
         <Button
             android:layout_width="130dp"
             android:layout_height="wrap_content"
-            android:text="Prendre une photo"
+            android:text="@string/action_takephoto"
             android:id="@+id/buttonPhoto"
             android:drawableLeft="@mipmap/icon_camera"
             android:drawableStart="@mipmap/icon_camera"

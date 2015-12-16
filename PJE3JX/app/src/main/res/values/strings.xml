@@ -24,6 +24,8 @@
     <string name="action_search">Chercher</string>
     <string name="action_scan">Scanner</string>
     <string name="action_settings">Paramètres</string>
+    <string name="action_takephoto">Prendre une Photo</string>
+
 
     <string name="book_isbn">ISBN</string>
     <string name="book_title">Titre</string>

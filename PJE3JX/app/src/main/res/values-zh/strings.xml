@@ -11,6 +11,10 @@
     <string name="title_activity_filterslist_add">创建搜索列表</string>
 
     <string name="action_add">添加</string>
+    <string-array name="add_array">
+        <item>填写表格</item>
+        <item>扫描／通过ISBN查找</item>
+    </string-array>
     <string name="action_edit">编辑</string>
     <string name="action_editdelete">编辑／删除</string>
     <string name="action_list">图书列表</string>
@@ -23,7 +27,7 @@
     <string name="book_genre">分类</string>
     <string name="book_date">日期</string>
 
-    <string name="filterslist_name">此次搜索名称</string>
+    <string name="filterslist_name">搜索名称</string>
     <string name="filterslist_filters">标准</string>
     <string name="filterslist_yearstart">在某年之后发表 </string>
     <string name="filterslist_yearend">在某年之前发表</string>
@@ -39,6 +43,27 @@
     <string name="text_deletemessage">您是否想要删除 ？</string>
 
     <string name="error_allfieldsnotfilled">请填完空格 ！</string>
+    <string name="action_scan">扫描</string>
+    <string name="action_search">查找</string>
+    <string name="book_collection">系列丛书</string>
+    <string name="book_comment">评论</string>
+    <string name="book_description">简介</string>
+    <string name="book_language">语言</string>
+    <string name="book_publisher">出版社</string>
+    <string name="book_rating">评分</string>
+    <string name="book_read">已阅读</string>
+    <string name="error_datanotfound">搜索无结果</string>
+    <string name="error_minimumfieldsnotfilled">请填写搜索名称和至少一个搜索标准</string>
+    <string name="error_noscandatareceived">无结果</string>
+    <string name="title_activity_book_scan">扫描条纹码</string>
+    <string name="book_rating_5">很好</string>
+    <string name="book_rating_4">好</string>
+    <string name="book_rating_3">一般</string>
+    <string name="book_rating_2">不好</string>
+    <string name="book_rating_1">差</string>
+    <string name="book_rating_0">暂无评分</string>
+    <string name="action_settings">参数</string>
+    <string name="action_takephoto">拍照</string>
 
 
 </resources>
